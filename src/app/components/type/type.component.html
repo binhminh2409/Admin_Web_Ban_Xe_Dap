@@ -1,0 +1,129 @@
+<div id="page-wrapper">
+  <div id="page-inner">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="page-head-line">Basic Forms</h1>
+      </div>
+    </div>
+    <!-- /. ROW  -->
+    <div class="row">
+      <!-- Nhóm Form Type và Type Update -->
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            Form Type
+          </div>
+          <div class="panel-body">
+            <form [formGroup]="typeForm" (ngSubmit)="onSubmitType()" role="form">
+              <div class="form-group">
+                <label>Enter Name</label>
+                <input class="form-control" type="text" formControlName="name">
+                <p class="help-block" *ngIf="typeForm.get('name')?.invalid && typeForm.get('name')?.touched">
+                  Name is required.
+                </p>
+                <p class="help-block">Help text here.</p>
+              </div>
+              <div class="form-group">
+                <label>Enter Description</label>
+                <input class="form-control" type="text" formControlName="description">
+                <p class="help-block"
+                  *ngIf="typeForm.get('description')?.invalid && typeForm.get('description')?.touched">
+                  Description is required.
+                </p>
+                <p class="help-block">Help text here.</p>
+              </div>
+              <div class="form-group">
+                <label>Product Type</label>
+                <input class="form-control" type="text" formControlName="productType">
+                <p class="help-block" *ngIf="typeForm.get('productType')?.invalid && typeForm.get('productType')?.touched">
+                  Product type is required.
+                </p>
+                <p class="help-block">Help text here.</p>
+              </div>
+              <button type="submit" class="btn btn-info" [disabled]="typeForm.invalid">Create Data</button>
+            </form>
+          </div>
+        </div>
+    
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            Type Update
+          </div>
+          <div class="panel-body">
+            <form [formGroup]="updateFormType" (ngSubmit)="onUpdateType()" role="form">
+              <div class="form-group">
+                <label>Id Type</label>
+                <input class="form-control" type="text" formControlName="id">
+              </div>
+              <p class="help-block">Help text here.</p>
+              <div class="form-group">
+                <label>Description</label>
+                <input class="form-control" type="text" formControlName="description">
+              </div>
+              <p class="help-block">Help text here.</p>
+              <button type="submit" class="btn btn-danger" [disabled]="updateFormType.invalid">Update Data</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Nhóm Form Brand và Brand Update -->
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            Form Brand
+          </div>
+          <div class="panel-body">
+            <form [formGroup]="brandForm" (ngSubmit)="onSubmitBrand()" role="form">
+              <div class="form-group">
+                <label>Enter Name</label>
+                <input class="form-control" type="text" formControlName="brandName">
+                <p class="help-block" *ngIf="brandForm.get('brandName')?.invalid && brandForm.get('brandName')?.touched">
+                  Name is required.
+                </p>
+                <p class="help-block">Help text here.</p>
+              </div>
+              <div class="form-group">
+                <label>Enter Description</label>
+                <input class="form-control" type="text" formControlName="origin">
+                <p class="help-block" *ngIf="brandForm.get('origin')?.invalid && brandForm.get('origin')?.touched">
+                  Description is required.
+                </p>
+                <p class="help-block">Help text here.</p>
+              </div>
+              <button type="submit" class="btn btn-info" [disabled]="brandForm.invalid">Create Data</button>
+            </form>
+          </div>
+        </div>
+    
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            Brand Update
+          </div>
+          <div class="panel-body">
+            <form [formGroup]="updateFormBrand" (ngSubmit)="onUpdateBrand()" role="form">
+              <div class="form-group">
+                <label>Id Type</label>
+                <input class="form-control" type="text" formControlName="id">
+                <p class="help-block" *ngIf="updateFormBrand.get('id')?.invalid && updateFormBrand.get('id')?.touched">
+                  Id is required.
+                </p>
+              </div>
+              <p class="help-block">Help text here.</p>
+              <div class="form-group">
+                <label>Description</label>
+                <input class="form-control" type="text" formControlName="origin">
+                <p class="help-block" *ngIf="updateFormBrand.get('origin')?.invalid && updateFormBrand.get('origin')?.touched">
+                  Description is required.
+                </p>
+              </div>
+              <p class="help-block">Help text here.</p>
+              <button type="submit" class="btn btn-danger" [disabled]="updateFormBrand.invalid">Update Data</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /. PAGE INNER  -->
+</div>

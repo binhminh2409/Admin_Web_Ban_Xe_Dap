@@ -1,0 +1,198 @@
+<div id="page-wrapper">
+  <div id="page-inner">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="page-head-line">Basic Forms</h1>
+      </div>
+    </div>
+    <!-- /. ROW  -->
+    <div class="row">
+      <!-- Nhóm Form Type và Type Update -->
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            Form Product
+          </div>
+          <div class="panel-body">
+            <form [formGroup]="productForm" (ngSubmit)="onSubmitProduct()" role="form">
+              <div class="form-group">
+                <label>Enter Name</label>
+                <input class="form-control" type="text" formControlName="productName" placeholder="Enter product name">
+                <p class="help-block"
+                  *ngIf="productForm.get('productName')?.invalid && productForm.get('productName')?.touched">
+                  Name is required.
+                </p>
+              </div>
+              <div class="form-group">
+                <label>Enter Description</label>
+                <textarea class="form-control" formControlName="description"
+                  placeholder="Enter product description"></textarea>
+                <p class="help-block"
+                  *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched">
+                  Description is required.
+                </p>
+              </div>
+              <div class="form-group">
+                <label>Enter Price</label>
+                <input class="form-control" type="number" formControlName="price" placeholder="Enter product price">
+                <p class="help-block" *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
+                  Price is required.
+                </p>
+              </div>
+              <div class="form-group">
+                <label>Price Has Decreased</label>
+                <input class="form-control" type="number" formControlName="priceHasDecreased"
+                  placeholder="Enter decreased price">
+                <p class="help-block"
+                  *ngIf="productForm.get('priceHasDecreased')?.invalid && productForm.get('priceHasDecreased')?.touched">
+                  Decreased price is required.
+                </p>
+              </div>
+              <div class="form-group">
+                <label>Enter Quantity</label>
+                <input class="form-control" type="number" formControlName="quantity"
+                  placeholder="Enter product quantity">
+                <p class="help-block"
+                  *ngIf="productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched">
+                  Quantity is required.
+                </p>
+              </div>
+              <div class="form-group">
+                <label>Brand ID</label>
+                <input class="form-control" type="number" formControlName="brandId" placeholder="Enter brand ID">
+                <p class="help-block"
+                  *ngIf="productForm.get('brandId')?.invalid && productForm.get('brandId')?.touched">
+                  Brand ID is required.
+                </p>
+              </div>
+              <div class="form-group">
+                <label>Type ID</label>
+                <input class="form-control" type="number" formControlName="typeId" placeholder="Enter type ID">
+                <p class="help-block" *ngIf="productForm.get('typeId')?.invalid && productForm.get('typeId')?.touched">
+                  Type ID is required.
+                </p>
+              </div>
+              <div class="form-group">
+                <label>Colors</label>
+                <input class="form-control" type="text" formControlName="colors" placeholder="Enter colors">
+                <p class="help-block" *ngIf="productForm.get('colors')?.invalid && productForm.get('colors')?.touched">
+                  Colors are required.
+                </p>
+              </div>
+              <div class="form-group">
+                <label>Upload Image</label>
+                <input type="file" (change)="onFileChange($event)" class="form-control" accept="image/*">
+                <p class="help-block" *ngIf="productForm.get('image')?.invalid && productForm.get('image')?.touched">
+                  Please upload an image.
+                </p>
+              </div>
+              <button type="submit" class="btn btn-info" [disabled]="productForm.invalid">Create Data</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nhóm Form Brand và Brand Update -->
+      <div *ngIf="showUpdateForm" class="col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-danger">
+          <div class="panel-heading text-center">
+            <h4>Product Update</h4>
+            <button type="button" class="close" (click)="showUpdateForm = false" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="panel-body">
+            <form [formGroup]="updateFormProduct" (ngSubmit)="onUpdateProduct()" role="form">
+              <div class="form-group">
+                <label for="id">Product ID</label>
+                <input class="form-control" type="text" formControlName="id" id="id" placeholder="Enter product ID">
+                <p class="help-block"
+                  *ngIf="updateFormProduct.get('id')?.invalid && updateFormProduct.get('id')?.touched">
+                  Id is required.
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="productName">Product Name</label>
+                <input class="form-control" type="text" formControlName="productName" id="productName"
+                  placeholder="Enter product name">
+                <p class="help-block"
+                  *ngIf="updateFormProduct.get('productName')?.invalid && updateFormProduct.get('productName')?.touched">
+                  Product name is required.
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="price">Price</label>
+                <input class="form-control" type="number" formControlName="price" id="price"
+                  placeholder="Enter product price" min="0">
+                <p class="help-block"
+                  *ngIf="updateFormProduct.get('price')?.invalid && updateFormProduct.get('price')?.touched">
+                  Price is required and must be a positive number.
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="priceHasDecreased">Price Has Decreased</label>
+                <input class="form-control" type="number" formControlName="priceHasDecreased" id="priceHasDecreased"
+                  placeholder="Enter decreased price" min="0">
+                <p class="help-block"
+                  *ngIf="updateFormProduct.get('priceHasDecreased')?.invalid && updateFormProduct.get('priceHasDecreased')?.touched">
+                  Price has decreased must be a positive number.
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" formControlName="description" id="description" rows="3"
+                  placeholder="Provide a brief description of the product"></textarea>
+                <p class="help-block"
+                  *ngIf="updateFormProduct.get('description')?.invalid && updateFormProduct.get('description')?.touched">
+                  Description is required.
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input class="form-control" type="number" formControlName="quantity" id="quantity"
+                  placeholder="Enter product quantity" min="0">
+                <p class="help-block"
+                  *ngIf="updateFormProduct.get('quantity')?.invalid && updateFormProduct.get('quantity')?.touched">
+                  Quantity is required and must be a non-negative number.
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" formControlName="status" id="status">
+                  <option value="0">Active</option>
+                  <option value="1">Inactive</option>
+                  <option value="2">Discontinued</option>
+                  <option value="3">On Sale</option>
+                </select>
+                <p class="help-block"
+                  *ngIf="updateFormProduct.get('status')?.invalid && updateFormProduct.get('status')?.touched">
+                  Status is required.
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="create">Create Date</label>
+                <input class="form-control" type="date" formControlName="create" id="create">
+                <p class="help-block"
+                  *ngIf="updateFormProduct.get('create')?.invalid && updateFormProduct.get('create')?.touched">
+                  Create date is required.
+                </p>
+              </div>
+              <div class="form-group">
+                <label for="image">Product Image</label>
+                <input class="form-control" type="file" (change)="onFileChange($event)" formControlName="image"
+                  id="image">
+                <p class="help-block"
+                  *ngIf="updateFormProduct.get('image')?.invalid && updateFormProduct.get('image')?.touched">
+                  Image is optional but must be a valid file if provided.
+                </p>
+              </div>
+              <button type="submit" class="btn btn-danger" [disabled]="updateFormProduct.invalid">Update
+                Product</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /. PAGE INNER  -->
+</div>

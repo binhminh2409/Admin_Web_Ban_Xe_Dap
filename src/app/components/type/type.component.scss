@@ -1,0 +1,38 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -15px; // Giảm bớt khoảng cách giữa các cột
+
+  .col-md-6, .col-sm-6, .col-xs-12 {
+    padding: 15px; // Thêm padding cho các cột
+    flex: 0 0 50%; // Đặt chiều rộng của cột
+    max-width: 50%; // Đặt chiều rộng tối đa
+    box-sizing: border-box; // Đảm bảo box-sizing hoạt động đúng
+
+    .panel {
+      border: 1px solid #ccc; // Đường viền cho panel
+      border-radius: 4px; // Bo tròn góc
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Đổ bóng cho panel
+      margin-bottom: 30px; // Khoảng cách giữa các panel
+
+      .panel-heading {
+        background-color: #f7f7f7; // Màu nền cho tiêu đề panel
+        font-weight: bold; // In đậm tiêu đề
+        padding: 10px; // Padding cho tiêu đề
+      }
+
+      .panel-body {
+        padding: 15px; // Padding cho body panel
+      }
+
+      .form-group {
+        margin-bottom: 15px; // Khoảng cách giữa các nhóm form
+      }
+
+      .btn {
+        width: 100%; // Chiều rộng nút bằng 100% của cột
+        margin-top: 10px; // Khoảng cách trên nút
+      }
+    }
+  }
+}

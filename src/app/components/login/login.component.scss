@@ -1,0 +1,36 @@
+// styles.scss
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; // Chiều cao toàn bộ màn hình
+    display: flex;
+    justify-content: center; // Căn giữa theo chiều ngang
+    align-items: center; // Căn giữa theo chiều dọc
+    background-color: #E2E2E2; // Màu nền của body
+}
+
+.container {
+    width: 100%; // Chiều rộng full màn hình
+    max-width: 500px; // Giới hạn chiều rộng tối đa cho container
+    padding: 20px; // Padding cho container
+    background-color: white; // Màu nền của form
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); // Đổ bóng cho container
+    border-radius: 8px; // Bo góc cho container
+}
+
+.panel-body {
+    padding: 20px; // Padding cho panel body
+}
+
+h5 {
+    margin-bottom: 20px; // Khoảng cách dưới cho tiêu đề
+}
+
+.form-group {
+    margin-bottom: 15px; // Khoảng cách dưới cho nhóm form
+}
+
+.btn {
+    width: 100%; // Nút chiếm toàn bộ chiều rộng
+}

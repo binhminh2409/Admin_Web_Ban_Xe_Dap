@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Title</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row text-center" style="padding-top: 20px;">
+      <div class="col-md-12">
+        <img src="assets/img/logo-invoice.png" alt="Logo" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel-body">
+          <form role="form" (ngSubmit)="onLogin()" [formGroup]="loginForm">
+            <hr />
+            <h5>Enter Details to Login</h5>
+            <br />
+            <div class="form-group input-group">
+              <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+              <input type="text" class="form-control" placeholder="Your Username" formControlName="email" />
+            </div>
+            <div class="form-group input-group">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              <input type="password" class="form-control" placeholder="Your Password" formControlName="password" />
+            </div>
+            <div class="form-group">
+              <label class="checkbox-inline">
+                <input type="checkbox" /> Remember me
+              </label>
+              <span class="pull-right">
+                <a href="index.html">Forget password?</a>
+              </span>
+            </div>
+            <button type="submit" class="btn btn-primary">Login Now</button>
+            <hr />
+            Not registered? <a href="index.html">click here</a> or go to <a href="index.html">Home</a>
+          </form>
+          <div *ngIf="loginMessage" class="alert alert-danger mt-3">{{ loginMessage }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
