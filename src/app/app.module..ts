@@ -14,6 +14,7 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { AccessoryListComponent } from './components/accessory-list/accessory-list.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 export function jwtOptionsFactory() {
   return {
@@ -36,7 +37,8 @@ export function jwtOptionsFactory() {
     ProductComponent,
     ProductListComponent,
     AccessoryListComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,
