@@ -1,3 +1,5 @@
+import { OrderWithDetail } from "./OrderWithDetails";
+
 export interface ReportPayment {
     id: number;
     userId: number;
@@ -8,5 +10,7 @@ export interface ReportPayment {
     method: string;
     createdTime: string;
     updatedTime: string;
+    showBookingInfo: boolean;
+    bookingInfo: OrderWithDetail
   }
   

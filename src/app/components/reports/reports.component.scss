@@ -39,3 +39,47 @@
     }
   }
   
+
+  .booking-info {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+
+
+  /* Add these styles to your component CSS file */
+
+.status-pending {
+  background-color: #ffeb3b!important; /* Yellow for Pending */
+  color: #333;
+}
+
+.status-processing {
+  background-color: #29b6f6!important; /* Light Blue for Processing */
+  color: #fff;
+}
+
+.status-confirmed {
+  background-color: #ff9800!important; /* Orange for Confirmed */
+  color: #fff;
+}
+
+.status-successful {
+  background-color: #3ea541!important; /* Green for Successful */
+  color: #ffffff;
+}
+
+.status-failed {
+  background-color: #f44336!important; /* Red for Failed */
+  color: #fff;
+}
+
+
+.received-payment-btn:disabled {
+  background-color: #d3d3d3!important;  /* Light gray */
+  color: #888888;             /* Gray text */
+  cursor: not-allowed;        /* Change cursor to indicate disabled */
+  border-color: #cccccc;      /* Gray border */
+}

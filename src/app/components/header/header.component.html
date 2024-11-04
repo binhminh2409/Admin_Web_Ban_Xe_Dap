@@ -69,6 +69,16 @@
               </li>
             </ul>
           </li>
+          <li class="menu-item" [class.active]="menuActiveList">
+            <a href="javascript:void(0);" class="menu-toggle" (click)="toggleMenuList()">
+              <i class="fa fa-flash "></i>Reports<span class="fa arrow"></span>
+            </a>
+            <ul class="nav nav-second-level" *ngIf="menuActiveList"> <!-- Sử dụng *ngIf để hiển thị menu con -->
+              <li>
+                <a href="/reports/payment"><i class="fa fa-desktop"></i>Payments</a>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
     </nav>

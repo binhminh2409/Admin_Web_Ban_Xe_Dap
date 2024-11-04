@@ -1,49 +1,78 @@
 <div id="page-wrapper">
-    <div id="page-inner">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="page-head-line">Payment Reports</h1>
-        </div>
+  <div id="page-inner">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="page-head-line">Payment Reports</h1>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">Payments</div>
-            <div class="panel-body">
-              <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover">
-                  <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>User ID</th>
-                      <th>Order ID</th>
-                      <th>Total Price</th>
-                      <th>Status</th>
-                      <th>Method</th>
-                      <th>Extra Fee</th>
-                      <th>Created Time</th>
-                      <th>Updated Time</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let payment of payments">
-                      <td>{{ payment.id }}</td>
-                      <td>{{ payment.userId }}</td>
-                      <td>{{ payment.orderId }}</td>
-                      <td>{{ payment.totalPrice | currency }}</td>
-                      <td>{{ payment.status }}</td>
-                      <td>{{ payment.method }}</td>
-                      <td>{{ payment.extraFee | currency }}</td>
-                      <td>{{ payment.createdTime | date: 'short' }}</td>
-                      <td>{{ payment.updatedTime | date: 'short' }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">Payments</div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>User ID</th>
+                    <th>Order ID</th>
+                    <th>Total Price</th>
+                    <th>Status</th>
+                    <th>Method</th>
+                    <th>Created Time</th>
+                    <th>Updated Time</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let payment of payments">
+                    <td>{{ payment.id }}</td>
+                    <td>{{ payment.userId }}</td>
+                    <td>{{ payment.orderId }}</td>
+                    <td>{{ payment.totalPrice | currency }}</td>
+
+                    <!-- Apply conditional class based on payment status -->
+                    <td [ngClass]="{
+                      'status-pending': payment.status === 'Pending',
+                      'status-processing': payment.status === 'Processing',
+                      'status-confirmed': payment.status === 'Confirmed',
+                      'status-successful': payment.status === 'Successful',
+                      'status-failed': payment.status === 'Failed'
+                    }">
+                      {{ payment.status }}
+                    </td>
+
+                    <td>{{ payment.method }}</td>
+                    <td>{{ payment.createdTime | date: 'short' }}</td>
+                    <td>{{ payment.updatedTime | date: 'short' }}</td>
+                    <td>
+                      <button (click)="markAsSuccessful(payment)" class="btn btn-success"
+                        *ngIf="payment.status === 'Confirmed'" [disabled]="payment.status !== 'Confirmed'">
+                        Received Payment
+                      </button>
+
+                      <button (click)="toggleBookingInfo(payment)" class="btn btn-info">
+                        Show Booking Info
+                      </button>
+
+                      <!-- Collapsible booking info panel -->
+                      <div *ngIf="payment.showBookingInfo && payment.bookingInfo" class="booking-info">
+                        <h5>Booking Info</h5>
+                        <p><strong>Booking ID:</strong> {{ payment.bookingInfo.no_ }}</p>
+                        <p><strong>Customer name:</strong> {{ payment.bookingInfo.shipName }}</p>
+                        <p><strong>Ship address:</strong> {{ payment.bookingInfo.shipAddress }}</p>
+                        <p><strong>Booking status:</strong> {{ payment.bookingInfo.status }}</p>
+                        <!-- Add more booking details as needed -->
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

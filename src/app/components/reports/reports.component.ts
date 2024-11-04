@@ -22,6 +22,7 @@ export class ReportsComponent implements OnInit {
       (response: any) => {
         if (response.success && Array.isArray(response.data)) {
           this.payments = response.data;
+          this.payments.forEach(payment => payment.showBookingInfo = false);
         } else {
           console.error('Invalid data:', response);
         }
@@ -32,4 +33,34 @@ export class ReportsComponent implements OnInit {
       }
     );
   }
+  
+  markAsSuccessful(payment: ReportPayment): void {
+    payment.status = 'Successful';
+
+    this.reportsService.markAsSuccessful(payment.id).subscribe({
+      next: (response) => {
+        // Handle success, maybe update the payment status or show a success message
+        console.log('Payment marked as received:', response);
+      },
+      error: (error) => {
+        console.error('Error updating payment status:', error);
+      }
+    });
+  }  
+
+  
+  toggleBookingInfo(payment: ReportPayment) {
+    payment.showBookingInfo = !payment.showBookingInfo;
+
+    if (payment.showBookingInfo && !payment.bookingInfo) {
+      // Fetch booking info if not already loaded
+      this.reportsService.getOrderById(payment.orderId).subscribe(
+        orderWithDetail => {
+          payment.bookingInfo = orderWithDetail;
+        },
+        error => console.error('Error fetching booking info:', error)
+      );
+    }
+  }
+
 }
