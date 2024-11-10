@@ -1,0 +1,83 @@
+/* Main layout */
+#page-wrapper {
+    padding: 20px;
+    background-color: #f9f9fb;
+  }
+  
+  .row {
+    display: flex;
+    gap: 15px;
+  }
+  
+  /* Column styling */
+  .picked-column {
+    background-color: #e0f7fa;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .shipped-column {
+    background-color: #fff3e0;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .delivered-column {
+    background-color: #e8f5e9;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .column-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #007bff;
+    margin-bottom: 15px;
+  }
+  
+  /* Card styling */
+  .delivery-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: box-shadow 0.2s ease;
+    margin-bottom: 10px;
+  }
+  
+  .delivery-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .payment-details {
+    background-color: #f3f4f7;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border-left: 4px solid #007bff;
+  }
+  
+  .payment-details h6 {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .row {
+      flex-direction: column;
+    }
+  
+    .column-title {
+      font-size: 1.2rem;
+    }
+  }
+  

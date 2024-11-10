@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit { // Implement OnInit
   menuActiveDataTables: boolean = false;
   menuActiveReports: boolean = false;
   menuActiveStock: boolean = false;
+  menuActivePackages: boolean = false;
 
   isLogin: boolean = false; // Đặt giá trị mặc định cho biến isLogin
   userName: string = ''; // Đặt giá trị mặc định cho biến userName
@@ -41,4 +42,7 @@ export class HeaderComponent implements OnInit { // Implement OnInit
     this.menuActiveStock = !this.menuActiveStock; // Đảo ngược trạng thái menu
   }
   
+  toggleMenuPackages(): void {
+    this.menuActivePackages = !this.menuActivePackages; // Đảo ngược trạng thái menu
+  }
 }

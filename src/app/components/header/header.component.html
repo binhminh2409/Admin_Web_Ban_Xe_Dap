@@ -73,13 +73,21 @@
               <li>
                 <a href="/stock"><i class="fa fa-desktop"></i>Stock</a>
               </li>
-            </ul>
-            <ul class="nav nav-second-level" *ngIf="menuActiveStock"> <!-- Sử dụng *ngIf để hiển thị menu con -->
               <li>
                 <a href="/stock/restock"><i class="fa fa-desktop"></i>Restock</a>
               </li>
               <li>
                 <a href="/stock/history"><i class="fa fa-desktop"></i>Restock History</a>
+              </li>
+            </ul>
+          </li>
+          <li class="menu-item" [class.active]="menuActiveStock">
+            <a href="javascript:void(0);" class="menu-toggle" (click)="toggleMenuPackages()">
+              <i class="fa fa-flash "></i>Packages<span class="fa arrow"></span>
+            </a>
+            <ul class="nav nav-second-level" *ngIf="menuActivePackages"> <!-- Sử dụng *ngIf để hiển thị menu con -->
+              <li>
+                <a href="/packages"><i class="fa fa-desktop"></i>Packages Management</a>
               </li>
             </ul>
           </li>

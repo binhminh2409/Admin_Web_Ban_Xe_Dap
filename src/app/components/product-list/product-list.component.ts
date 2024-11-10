@@ -22,41 +22,47 @@ export class ProductListComponent implements OnInit {
     this.productService.getProductBicycles().subscribe(
       (response: any) => {
         if (response.success && Array.isArray(response.data)) {
-          this.products = response.data;
+          // Add `showDetails` property for each product to control collapsibility
+          this.products = response.data.map((product: ProductBicycle) => ({
+            ...product,
+            showDetails: false // Initialize as collapsed
+          }));
         } else {
-          console.error('Dữ liệu không hợp lệ:', response);
+          console.error('Invalid data:', response);
         }
       },
       (error) => {
-        console.error('Lỗi khi tải danh sách sản phẩm:', error);
-        alert('Không thể tải danh sách sản phẩm. Vui lòng thử lại sau.');
+        console.error('Error loading product list:', error);
+        alert('Unable to load product list. Please try again later.');
       }
     );
   }
 
+  toggleDetails(product: ProductBicycle): void {
+    product.showDetails = !product.showDetails;
+  }
+
   editProduct(product: ProductBicycle): void {
-    console.log('Sửa sản phẩm:', product);
-    // Điều hướng đến trang sửa sản phẩm với ID sản phẩm
+    console.log('Editing product:', product);
     this.router.navigate(['/product', { product: JSON.stringify(product) }]);
   }
 
-  deleteProduct(Id: number): void {
-    if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
-      this.productService.deleteProductBicycle(Id).subscribe(
+  deleteProduct(id: number): void {
+    if (confirm('Are you sure you want to delete this product?')) {
+      this.productService.deleteProductBicycle(id).subscribe(
         () => {
-          this.products = this.products.filter(product => product.id !== Id);
-          alert('Sản phẩm đã được xóa thành công.');
+          this.products = this.products.filter(product => product.id !== id);
+          alert('Product deleted successfully.');
         },
         (error) => {
-          console.error('Lỗi khi xóa sản phẩm:', error);
-          alert('Không thể xóa sản phẩm. Vui lòng thử lại sau.');
+          console.error('Error deleting product:', error);
+          alert('Unable to delete product. Please try again later.');
         }
       );
     }
   }
 
-  getImageUrl(data: ProductBicycle): string {
-    const imageUrl = data && data.id ? `${environment.apiUrl}/Products/images/product/${data.id}` : '';
-    return imageUrl;
+  getImageUrl(product: ProductBicycle): string {
+    return product && product.id ? `${environment.apiUrl}/Products/images/product/${product.id}` : '';
   }
 }

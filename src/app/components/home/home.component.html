@@ -1,106 +1,120 @@
 <div class="wrapper">
-  <!-- Sidebar -->
-
-  <!-- Main Content -->
-  <div class="main-content">
-      <div class="header">
-          <h1>Welcome Back, Admin</h1>
-          <p>Your key metrics and overview</p>
-      </div>
-
-      <!-- Stats and Data Cards -->
-      <div class="stats">
-          <div class="card">
-              <div class="card-icon red">
-                  <i class="fa fa-tasks"></i>
-              </div>
-              <h4>Zero Issues</h4>
-              <p>No pending issues right now</p>
-          </div>
-          <div class="card">
-              <div class="card-icon green">
-                  <i class="fa fa-check"></i>
-              </div>
-              <h4>40 Tasks on Track</h4>
-              <p>Everything is progressing smoothly</p>
-          </div>
-          <div class="card">
-              <div class="card-icon blue">
-                  <i class="fa fa-dollar-sign"></i>
-              </div>
-              <h4>$200K Pending Payments</h4>
-              <p>Payments awaiting confirmation</p>
-          </div>
-          <div class="card">
-              <div class="card-icon yellow">
-                  <i class="fa fa-users"></i>
-              </div>
-              <h4>120 Active Users</h4>
-              <p>Users are actively engaging</p>
-          </div>
-      </div>
-
-      <!-- Graphs and Data Tables -->
-      <div class="graphs">
-          <div class="graph">
-              <h3>Revenue Over Time</h3>
-              <canvas id="revenueChart"></canvas>
-          </div>
-          <div class="table">
-              <h3>Recent Orders</h3>
-              <table>
-                  <thead>
-                      <tr>
-                          <th>Order ID</th>
-                          <th>Customer Name</th>
-                          <th>Status</th>
-                          <th>Total</th>
-                          <th>Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>#10234</td>
-                          <td>John Doe</td>
-                          <td>Completed</td>
-                          <td>$150.00</td>
-                          <td><button>View</button></td>
-                      </tr>
-                      <tr>
-                          <td>#10235</td>
-                          <td>Jane Smith</td>
-                          <td>Pending</td>
-                          <td>$250.00</td>
-                          <td><button>View</button></td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-      </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2 class="logo">Admin</h2>
+        </div>
+        <ul class="nav-list">
+            <li><a href="#"><i class="fa fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="#"><i class="fa fa-box"></i> Orders</a></li>
+            <li><a href="#"><i class="fa fa-users"></i> Customers</a></li>
+            <li><a href="#"><i class="fa fa-cogs"></i> Settings</a></li>
+            <li><a href="#"><i class="fa fa-chart-line"></i> Reports</a></li>
+            <li><a href="#"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+  
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Welcome Back, Admin</h1>
+            <p>Your key metrics and overview</p>
+        </div>
+  
+        <!-- Stats and Data Cards -->
+        <div class="stats">
+            <div class="card">
+                <div class="card-icon red">
+                    <i class="fa fa-tasks"></i>
+                </div>
+                <h4>Zero Issues</h4>
+                <p>No pending issues right now</p>
+            </div>
+            <div class="card">
+                <div class="card-icon green">
+                    <i class="fa fa-check"></i>
+                </div>
+                <h4>40 Tasks on Track</h4>
+                <p>Everything is progressing smoothly</p>
+            </div>
+            <div class="card">
+                <div class="card-icon blue">
+                    <i class="fa fa-dollar-sign"></i>
+                </div>
+                <h4>$200K Pending Payments</h4>
+                <p>Payments awaiting confirmation</p>
+            </div>
+            <div class="card">
+                <div class="card-icon yellow">
+                    <i class="fa fa-users"></i>
+                </div>
+                <h4>120 Active Users</h4>
+                <p>Users are actively engaging</p>
+            </div>
+        </div>
+  
+        <!-- Graphs and Data Tables -->
+        <div class="graphs">
+            <div class="graph">
+                <h3>Revenue Over Time</h3>
+                <canvas id="revenueChart"></canvas>
+            </div>
+            <div class="table">
+                <h3>Recent Orders</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer Name</th>
+                            <th>Status</th>
+                            <th>Total</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#10234</td>
+                            <td>John Doe</td>
+                            <td>Completed</td>
+                            <td>$150.00</td>
+                            <td><button>View</button></td>
+                        </tr>
+                        <tr>
+                            <td>#10235</td>
+                            <td>Jane Smith</td>
+                            <td>Pending</td>
+                            <td>$250.00</td>
+                            <td><button>View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
   </div>
-</div>
-
-<script>
-  var ctx = document.getElementById('revenueChart').getContext('2d');
-  var revenueChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-          datasets: [{
-              label: 'Revenue',
-              data: [120, 150, 180, 220, 170, 200],
-              borderColor: '#4e73df',
-              backgroundColor: 'rgba(78, 115, 223, 0.2)',
-              borderWidth: 2
-          }]
-      },
-      options: {
-          responsive: true,
-          scales: {
-              y: {
-                  beginAtZero: true
-              }
-          }
-      }
-  });
-</script>
+  
+  <script>
+    var ctx = document.getElementById('revenueChart').getContext('2d');
+    var revenueChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+                label: 'Revenue',
+                data: [120, 150, 180, 220, 170, 200],
+                borderColor: '#4e73df',
+                backgroundColor: 'rgba(78, 115, 223, 0.2)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+  </script>
+  

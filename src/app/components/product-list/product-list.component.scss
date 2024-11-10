@@ -1,68 +1,185 @@
-.row {
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7f6;
   margin: 0;
-}
-
-.col-md-6 {
-  width: 100%;
   padding: 0;
 }
 
-.panel {
-  width: 100%;
-  max-width: 100%;
+/* Page Wrapper */
+#page-wrapper {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
-.panel-heading {
-  background-color: #f5f5f5;
-  font-weight: bold;
-  text-align: center;
-  font-size: 1.5em;
-  padding: 10px;
+/* Page Header */
+.page-head-line {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.table-responsive {
-  overflow-x: auto;
+/* Product List */
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.table {
-  width: 100%;
-  text-align: left;
-  border-collapse: collapse;
-
-  th,
-  td {
-    padding: 10px;
-    border: 1px solid #ddd;
-  }
-
-  th {
-    background-color: #f8f8f8;
-    font-weight: bold;
-  }
-
-  tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-}
-
-.product-description {
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  display: -webkit-box;
-  display: box; /* Thêm thuộc tính chuẩn */
-  -webkit-box-orient: vertical;
-  box-orient: vertical; /* Thêm thuộc tính chuẩn */
-  -webkit-line-clamp: 3; /* Hiển thị 3 dòng */
-  line-clamp: 3; /* Thêm thuộc tính chuẩn */
-  max-height: 4.5em; /* Chiều cao tối đa cho 3 dòng */
-  transition: max-height 0.3s ease; /* Hiệu ứng chuyển tiếp */
 }
 
-.product-description.expanded {
-  max-height: none; /* Hiển thị tất cả khi mở rộng */
-  overflow: visible; /* Hiển thị tất cả nội dung */
+.product-header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
 }
 
-.table-responsive {
-  max-height: 510px; /* Giới hạn chiều cao của bảng */
-  overflow-y: auto; /* Thêm thanh cuộn dọc */
+.product-title h3 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.product-price {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+.product-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 15px;
+}
+
+.product-details {
+  flex: 1;
+}
+
+.product-info p {
+  margin: 8px 0;
+}
+
+/* Styling for the product description container */
+.product-description {
+  margin-top: 10px;
+}
+
+/* Basic styling for the description text */
+.description-text {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #333;
+  display: block;
+  /* Remove the height limit to allow full content to show */
+  max-height: none;
+  overflow: visible;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+
+/* Button styling */
+.btn-link {
+  color: #007bff;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+/* Optional: Add some space around the toggle button */
+.product-description button {
+  margin-top: 5px;
+}
+
+
+
+.product-image {
+  max-width: 150px;
+}
+
+.product-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* Price Decrease */
+.price-decrease span {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* Actions */
+.product-actions {
+  padding: 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn {
+  font-size: 0.875rem;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: white;
+  border: none;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-image {
+    max-width: 120px;
+  }
+
+  .product-description {
+    max-height: 50px;
+  }
+
+  .description-text.expanded {
+    max-height: 150px;
+  }
 }

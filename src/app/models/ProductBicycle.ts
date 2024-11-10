@@ -6,6 +6,7 @@ export enum StatusProduct {
   }
   
   export interface ProductBicycle {
+    showDetails: boolean;
     id: number;
     productName: string;
     price: number;

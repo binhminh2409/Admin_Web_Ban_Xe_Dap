@@ -57,21 +57,33 @@
                   Quantity is required.
                 </p>
               </div>
+              <!-- Brand Dropdown Selection with ID Binding -->
               <div class="form-group">
-                <label>Brand ID</label>
-                <input class="form-control" type="number" formControlName="brandId" placeholder="Enter brand ID">
+                <label>Brand</label>
+                <div class="brands form-control">
+                  <select [(ngModel)]="selectedBrand" (change)="onBrandSelect()">
+                    <option *ngFor="let brand of brands" [ngValue]="brand">{{ brand.brandName }}</option>
+                  </select>
+                </div>
                 <p class="help-block"
                   *ngIf="productForm.get('brandId')?.invalid && productForm.get('brandId')?.touched">
                   Brand ID is required.
                 </p>
               </div>
+
+              <!-- Type Dropdown Selection with ID Binding -->
               <div class="form-group">
-                <label>Type ID</label>
-                <input class="form-control" type="number" formControlName="typeId" placeholder="Enter type ID">
+                <label>Type</label>
+                <div class="types form-control">
+                  <select [(ngModel)]="selectedType" (change)="onTypeSelect()">
+                    <option *ngFor="let type of types" [ngValue]="type">{{ type.name }}</option>
+                  </select>
+                </div>
                 <p class="help-block" *ngIf="productForm.get('typeId')?.invalid && productForm.get('typeId')?.touched">
                   Type ID is required.
                 </p>
               </div>
+
               <div class="form-group">
                 <label>Colors</label>
                 <input class="form-control" type="text" formControlName="colors" placeholder="Enter colors">

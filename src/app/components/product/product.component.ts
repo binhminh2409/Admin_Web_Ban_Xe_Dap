@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProductService } from '../../service/product.service';
 import { ProductBicycle } from '../../models/ProductBicycle';
 import { ActivatedRoute } from '@angular/router';
+import { BrandSelect, TypeSelect } from '../../models/Select';
 
 @Component({
   selector: 'app-product',
@@ -13,6 +14,11 @@ export class ProductComponent implements OnInit {
   showUpdateForm: boolean = false;
   productForm: FormGroup;
   updateFormProduct: FormGroup;
+
+  brands: any[] = [];
+  types: any[] = [];
+  selectedBrand: BrandSelect | null = null; // For single selection (dropdown)
+  selectedType: TypeSelect | null = null; // For single selection (dropdown)
 
   constructor(private fb: FormBuilder, private productSV: ProductService, private route: ActivatedRoute) {
     this.productForm = this.fb.group({
@@ -26,6 +32,7 @@ export class ProductComponent implements OnInit {
       colors: ['', Validators.required],
       image: [null, Validators.required]
     });
+
 
     this.updateFormProduct = this.fb.group({
       id: ['', Validators.required],
@@ -47,6 +54,33 @@ export class ProductComponent implements OnInit {
         this.setProductData(product);
       }
     });
+
+    // Fetch brands and types when the component is initialized
+    this.productSV.getBrands().subscribe((response: any) => {
+      if (response.success) {
+        this.brands = response.data; // Access data array from the response
+      }
+    });
+
+    this.productSV.getTypes().subscribe((response: any) => {
+      if (response.success) {
+        this.types = response.data; // Access data array from the response
+      }
+    });
+  }
+
+  onBrandSelect() {
+    // Update brandId when a brand is selected
+    if (this.selectedBrand) {
+      this.productForm.get('brandId')?.setValue(this.selectedBrand.id);
+    }
+  }
+
+  onTypeSelect() {
+    // Update typeId when a type is selected
+    if (this.selectedType) {
+      this.productForm.get('typeId')?.setValue(this.selectedType.id);
+    }
   }
 
   onSubmitProduct() {

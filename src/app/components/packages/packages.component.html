@@ -1,0 +1,66 @@
+<div id="page-wrapper" class="container mt-4">
+  <div class="row">
+    <!-- Picked Column -->
+    <div class="col-md-3 picked-column">
+      <h3 class="column-title">Picked</h3>
+      <div *ngIf="getDeliveriesByStatus('NewOrder').length === 0" class="text-muted">
+        <p>No picked deliveries available.</p>
+      </div>
+      <div *ngFor="let delivery of getDeliveriesByStatus('NewOrder')" class="card delivery-card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Delivery No: {{ delivery.no_ }}</h5>
+          <p><strong>Partner:</strong> {{ delivery.partner }}</p>
+          <p><strong>ETA:</strong> {{ delivery.eta | date: 'medium' }}</p>
+          <p><strong>Created:</strong> {{ delivery.createdTime | date: 'medium' }}</p>
+          <div class="payment-details">
+            <h6>Payment Details</h6>
+            <p><strong>Total Price:</strong> {{ delivery.payment.totalPrice | currency }}</p>
+            <p><strong>Method:</strong> {{ delivery.payment.method }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shipped Column -->
+    <div class="col-md-3 shipped-column">
+      <h3 class="column-title">Shipped</h3>
+      <div *ngIf="getDeliveriesByStatus('Shipped').length === 0" class="text-muted">
+        <p>No shipped deliveries available.</p>
+      </div>
+      <div *ngFor="let delivery of getDeliveriesByStatus('Shipped')" class="card delivery-card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Delivery No: {{ delivery.no_ }}</h5>
+          <p><strong>Partner:</strong> {{ delivery.partner }}</p>
+          <p><strong>ETA:</strong> {{ delivery.eta | date: 'medium' }}</p>
+          <p><strong>Created:</strong> {{ delivery.createdTime | date: 'medium' }}</p>
+          <div class="payment-details">
+            <h6>Payment Details</h6>
+            <p><strong>Total Price:</strong> {{ delivery.payment.totalPrice | currency }}</p>
+            <p><strong>Method:</strong> {{ delivery.payment.method }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delivered Column -->
+    <div class="col-md-3 delivered-column">
+      <h3 class="column-title">Delivered</h3>
+      <div *ngIf="getDeliveriesByStatus('Delivered').length === 0" class="text-muted">
+        <p>No delivered packages available.</p>
+      </div>
+      <div *ngFor="let delivery of getDeliveriesByStatus('Delivered')" class="card delivery-card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Delivery No: {{ delivery.no_ }}</h5>
+          <p><strong>Partner:</strong> {{ delivery.partner }}</p>
+          <p><strong>ETA:</strong> {{ delivery.eta | date: 'medium' }}</p>
+          <p><strong>Created:</strong> {{ delivery.createdTime | date: 'medium' }}</p>
+          <div class="payment-details">
+            <h6>Payment Details</h6>
+            <p><strong>Total Price:</strong> {{ delivery.payment.totalPrice | currency }}</p>
+            <p><strong>Method:</strong> {{ delivery.payment.method }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,6 +19,7 @@ import { StockListComponent } from './components/stock-list/stock-list.component
 import { InputStockComponent } from './components/input-stock/input-stock.component';
 import { RestockHistoryComponent } from './components/restock-history/restock-history.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { PackagesComponent } from './components/packages/packages.component';
 
 export function jwtOptionsFactory() {
   return {
@@ -46,7 +47,8 @@ export function jwtOptionsFactory() {
     StockListComponent,
     InputStockComponent,
     RestockHistoryComponent,
-    DashboardComponent
+    DashboardComponent,
+    PackagesComponent
   ],
   imports: [
     FormsModule,
