@@ -1,0 +1,28 @@
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="dashboard-container">
+
+
+                    <!-- Recent Payments Section -->
+                    <div class="payments-section">
+                        <h2>Recent Payments</h2>
+                        <div *ngFor="let payment of payments" class="payment-item">
+                            <div class="payment-info">
+                                <p><strong>Payment ID:</strong> {{ payment.id }}</p>
+                                <p><strong>Status:</strong> {{ payment.status }}</p>
+                                <button (click)="toggleBookingInfo(payment)">Toggle Booking Info</button>
+                            </div>
+
+                            <div *ngIf="payment.showBookingInfo && payment.bookingInfo" class="booking-info">
+                                <p><strong>Booking Info:</strong></p>
+                                <pre>{{ payment.bookingInfo | json }}</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

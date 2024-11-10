@@ -9,18 +9,24 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { AccessoryListComponent } from './components/accessory-list/accessory-list.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ReportsComponent } from './components/reports/reports.component';
+import { StockListComponent } from './components/stock-list/stock-list.component';
+import { InputStockComponent } from './components/input-stock/input-stock.component';
+import { RestockHistoryComponent } from './components/restock-history/restock-history.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'type', component: TypeComponent},
   { path: 'product', component: ProductComponent},
   { path: 'product_list', component: ProductListComponent},
   { path: 'accessory_list', component: AccessoryListComponent },
   { path: 'product_Detail',component: ProductDetailComponent},
   { path: 'reports/payment',component: ReportsComponent},
-
+  { path: 'stock',component: StockListComponent},
+  { path: 'stock/restock',component: InputStockComponent},
+  { path: 'stock/history',component: RestockHistoryComponent},
 ];
 
 @NgModule({

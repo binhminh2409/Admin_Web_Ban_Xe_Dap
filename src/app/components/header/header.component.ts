@@ -8,7 +8,10 @@ import { AuthService } from '../../service/auth.service'; // Đảm bảo đư�
 })
 export class HeaderComponent implements OnInit { // Implement OnInit
   menuActiveForms: boolean = false;
-  menuActiveList: boolean = false;
+  menuActiveDataTables: boolean = false;
+  menuActiveReports: boolean = false;
+  menuActiveStock: boolean = false;
+
   isLogin: boolean = false; // Đặt giá trị mặc định cho biến isLogin
   userName: string = ''; // Đặt giá trị mặc định cho biến userName
 
@@ -24,10 +27,18 @@ export class HeaderComponent implements OnInit { // Implement OnInit
   toggleMenuForms(): void {
     this.menuActiveForms = !this.menuActiveForms; // Đảo ngược trạng thái menu
   }
+
   
-  toggleMenuList(): void {
-    this.menuActiveList = !this.menuActiveList; // Đảo ngược trạng thái menu
+  toggleMenuDataTables(): void {
+    this.menuActiveDataTables = !this.menuActiveDataTables; // Đảo ngược trạng thái menu
+  }
+  
+  toggleMenuReports(): void {
+    this.menuActiveReports = !this.menuActiveReports; // Đảo ngược trạng thái menu
   }
 
+  toggleMenuStock(): void {
+    this.menuActiveStock = !this.menuActiveStock; // Đảo ngược trạng thái menu
+  }
   
 }

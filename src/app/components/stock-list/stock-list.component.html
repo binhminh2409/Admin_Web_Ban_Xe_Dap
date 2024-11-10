@@ -1,0 +1,45 @@
+<div id="page-wrapper">
+  <div id="page-inner">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="page-headline">Stock List</h1>
+
+        <!-- Search bar for filtering stocks -->
+        <div class="search-bar">
+          <input type="text" placeholder="Search stocks..." (input)="onSearchChange($event)" class="form-control" />
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="stock-list">
+              <!-- Filtered list of stock items -->
+              <div class="stock-card" *ngFor="let stock of filteredStocks()">
+                <div class="stock-card-header">
+                  <img [src]="getImageUrl(stock.product)" alt="{{ stock.product.productName }}" class="stock-image" />
+                </div>
+                <div class="stock-card-body">
+                  <h3 class="stock-name">{{ stock.product.productName }}</h3>
+                  <p class="stock-price">{{ stock.product.price | currency }}</p>
+                  <p class="stock-quantity">Quantity in stock: {{ stock.quantity }}</p>
+                  <p class="stock-color">Color: {{ stock.product.colors }}</p>
+                  <p class="stock-size">Size: {{ stock.product.size || 'N/A' }}</p>
+                </div>
+                <!-- <div class="stock-card-footer">
+                  <button (click)="updateStock(stock)" class="btn btn-primary">
+                    Update Stock
+                  </button>
+                </div> -->
+                <div class="stock-card-footer">
+                  <button (click)="restock(stock.product)" class="btn btn-primary">
+                    Restock
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

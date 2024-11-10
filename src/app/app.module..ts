@@ -6,7 +6,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './components/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './components/auth-guard/auth-guard.component';
 import { TypeComponent } from './components/type/type.component';
@@ -15,6 +15,10 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { AccessoryListComponent } from './components/accessory-list/accessory-list.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ReportsComponent } from './components/reports/reports.component';
+import { StockListComponent } from './components/stock-list/stock-list.component';
+import { InputStockComponent } from './components/input-stock/input-stock.component';
+import { RestockHistoryComponent } from './components/restock-history/restock-history.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export function jwtOptionsFactory() {
   return {
@@ -38,9 +42,14 @@ export function jwtOptionsFactory() {
     ProductListComponent,
     AccessoryListComponent,
     ProductDetailComponent,
-    ReportsComponent
+    ReportsComponent,
+    StockListComponent,
+    InputStockComponent,
+    RestockHistoryComponent,
+    DashboardComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
