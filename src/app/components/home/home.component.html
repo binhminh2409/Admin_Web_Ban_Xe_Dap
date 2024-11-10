@@ -1,78 +1,106 @@
-<div id="page-wrapper">
-  <div id="page-inner">
-    <div class="row">
-      <div class="col-md-12">
-        <h1 class="page-head-line">DASHBOARD</h1>
-        <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1>
+<div class="wrapper">
+  <!-- Sidebar -->
+
+  <!-- Main Content -->
+  <div class="main-content">
+      <div class="header">
+          <h1>Welcome Back, Admin</h1>
+          <p>Your key metrics and overview</p>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="main-box mb-red">
-          <a href="#">
-            <i class="fa fa-bolt fa-5x"></i>
-            <h5>Zero Issues</h5>
-          </a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="main-box mb-dull">
-          <a href="#">
-            <i class="fa fa-plug fa-5x"></i>
-            <h5>40 Task In Check</h5>
-          </a>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="main-box mb-pink">
-          <a href="#">
-            <i class="fa fa-dollar fa-5x"></i>
-            <h5>200K Pending</h5>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="row" style="padding-bottom: 100px;">
-      <div class="col-md-6">
-        <div id="comments-sec">
-          <h4><strong>Compose Support Ticket </strong></h4>
-          <hr />
-          <div class="form-group  ">
-            <label>Please Write a Subject Line</label>
-            <input type="text" class="form-control" required="required" placeholder="Enter Subject Of Ticket" />
+
+      <!-- Stats and Data Cards -->
+      <div class="stats">
+          <div class="card">
+              <div class="card-icon red">
+                  <i class="fa fa-tasks"></i>
+              </div>
+              <h4>Zero Issues</h4>
+              <p>No pending issues right now</p>
           </div>
-          <div class="form-group ">
-            <label>Please Enter Issue</label>
-            <textarea class="form-control" rows="8"></textarea>
+          <div class="card">
+              <div class="card-icon green">
+                  <i class="fa fa-check"></i>
+              </div>
+              <h4>40 Tasks on Track</h4>
+              <p>Everything is progressing smoothly</p>
           </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-success">Compose &amp; Send Ticket</button>
+          <div class="card">
+              <div class="card-icon blue">
+                  <i class="fa fa-dollar-sign"></i>
+              </div>
+              <h4>$200K Pending Payments</h4>
+              <p>Payments awaiting confirmation</p>
           </div>
-        </div>
+          <div class="card">
+              <div class="card-icon yellow">
+                  <i class="fa fa-users"></i>
+              </div>
+              <h4>120 Active Users</h4>
+              <p>Users are actively engaging</p>
+          </div>
       </div>
-      <div class="col-md-6">
-        <div class="panel panel-back noti-box">
-          <span class="icon-box bg-color-black">
-            <i class="fa fa-bicycle"></i>
-          </span>
-          <div class="text-box">
-            <p class="main-text">52 Important Issues to Fix </p>
-            <p>Please fix these issues to work smooth</p>
-            <p>Time Left: 30 mins</p>
-            <hr />
-            <p>
-              <span class=" color-bottom-txt"><i class="fa fa-edit"></i>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
-              </span>
-            </p>
-            <hr />
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit gthn.
+
+      <!-- Graphs and Data Tables -->
+      <div class="graphs">
+          <div class="graph">
+              <h3>Revenue Over Time</h3>
+              <canvas id="revenueChart"></canvas>
           </div>
-        </div>
+          <div class="table">
+              <h3>Recent Orders</h3>
+              <table>
+                  <thead>
+                      <tr>
+                          <th>Order ID</th>
+                          <th>Customer Name</th>
+                          <th>Status</th>
+                          <th>Total</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>#10234</td>
+                          <td>John Doe</td>
+                          <td>Completed</td>
+                          <td>$150.00</td>
+                          <td><button>View</button></td>
+                      </tr>
+                      <tr>
+                          <td>#10235</td>
+                          <td>Jane Smith</td>
+                          <td>Pending</td>
+                          <td>$250.00</td>
+                          <td><button>View</button></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
       </div>
-    </div>
   </div>
 </div>
+
+<script>
+  var ctx = document.getElementById('revenueChart').getContext('2d');
+  var revenueChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          datasets: [{
+              label: 'Revenue',
+              data: [120, 150, 180, 220, 170, 200],
+              borderColor: '#4e73df',
+              backgroundColor: 'rgba(78, 115, 223, 0.2)',
+              borderWidth: 2
+          }]
+      },
+      options: {
+          responsive: true,
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+</script>

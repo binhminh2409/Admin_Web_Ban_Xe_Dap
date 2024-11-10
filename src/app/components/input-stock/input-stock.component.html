@@ -1,0 +1,67 @@
+<div id="page-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-stock-form" *ngIf="products.length > 0">
+                    <h3 class="text-center">Restock Products</h3>
+
+                    <!-- Input Stock List -->
+                    <div *ngFor="let inputStock of inputStocks; let i = index" class="input-stock-item card mb-3">
+                        <div class="row p-3">
+                            <!-- Product Selection with Image -->
+                            <div class="col-12 col-md-4">
+                                <label for="product" class="font-weight-bold">Product</label>
+                                <div class="product-select">
+                                    <select [(ngModel)]="inputStock.productId" name="product" class="form-control" (change)="updateTotalPrice(inputStock)">
+                                        <option *ngFor="let product of products" [value]="product.id">
+                                            <img [src]="product.image" alt="{{ product.productName }}" class="product-img" />
+                                            {{ product.productName }}
+                                        </option>
+                                    </select>
+                                    <!-- Product Image Preview -->
+                                    <div *ngIf="inputStock.productId">
+                                        <img [src]="getImageUrl(inputStock.productId)" alt="Product Image" class="selected-product-img" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quantity -->
+                            <div class="col-12 col-md-2">
+                                <label for="quantity">Quantity</label>
+                                <input type="number" [(ngModel)]="inputStock.quantity" name="quantity" class="form-control" (input)="updateTotalPrice(inputStock)" />
+                            </div>
+
+                            <!-- Price -->
+                            <div class="col-12 col-md-2">
+                                <label for="price">Price</label>
+                                <input type="number" [(ngModel)]="inputStock.price" name="price" class="form-control" (input)="updateTotalPrice(inputStock)" />
+                            </div>
+
+                            <!-- Total Price (non-editable) -->
+                            <div class="col-12 col-md-2">
+                                <label for="totalPrice">Total Price</label>
+                                <input type="number" [value]="inputStock.totalPrice" name="totalPrice" class="form-control" disabled />
+                            </div>
+
+                            <!-- Remove Button -->
+                            <div class="col-12 col-md-2 d-flex align-items-center justify-content-center">
+                                <button (click)="removeInputStock(i)" class="btn btn-danger">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add New Item Button -->
+                    <div class="text-center">
+                        <button (click)="addInputStock()" class="btn btn-primary mt-3">Add New Item</button>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center mt-4">
+                        <button (click)="submitInputStocks()" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+
+                <!-- Loading Spinner -->
+                <div *ngIf="products.length === 0" class="text-center mt-5">Loading products...</div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,49 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <div *ngFor="let group of groupedRestockData" class="batch-group">
+                <!-- Batch Number Section -->
+                <div class="batch-header">
+                    <h3 class="batch-title">Batch No: {{ group.batchNo }}</h3>
+                    <span><strong>Created at:</strong> {{ group.items[0].createdTime | date: 'short' }}</span>
+                </div>
+
+                <!-- Creator Section -->
+                <div class="creator-card">
+                    <div class="creator-header">
+                        <h4 class="creator-title">Creator Info</h4>
+                    </div>
+                    <div class="creator-details">
+                        <div class="creator-name">
+                            <strong>Name:</strong> {{ getUserInfo(group.items[0].userId ?? 0)?.name }}
+                        </div>
+                        <div class="creator-email">
+                            <strong>Email:</strong> {{ getUserInfo(group.items[0].userId ?? 0)?.email }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restock Table Section -->
+                <table class="restock-table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of group.items">
+                            <td>{{ item.product?.productName }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ item.price | currency: 'VND' }}</td>
+                            <td class="text-aligned">{{ item.totalPrice | currency: 'VND' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -30,7 +30,7 @@
                     <td>{{ payment.id }}</td>
                     <td>{{ payment.userId }}</td>
                     <td>{{ payment.orderId }}</td>
-                    <td>{{ payment.totalPrice | currency }}</td>
+                    <td>{{ payment.totalPrice | currency: 'VND' }}</td>
 
                     <!-- Apply conditional class based on payment status -->
                     <td [ngClass]="{
@@ -47,11 +47,6 @@
                     <td>{{ payment.createdTime | date: 'short' }}</td>
                     <td>{{ payment.updatedTime | date: 'short' }}</td>
                     <td>
-                      <button (click)="markAsSuccessful(payment)" class="btn btn-success"
-                        *ngIf="payment.status === 'Confirmed'" [disabled]="payment.status !== 'Confirmed'">
-                        Received Payment
-                      </button>
-
                       <button (click)="toggleBookingInfo(payment)" class="btn btn-info">
                         Show Booking Info
                       </button>

@@ -17,13 +17,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">COMPANY NAME</a>
+        <a class="navbar-brand" href="index.html">MINT BIKE</a>
       </div>
       <div class="header-right">
-        <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i
-            class="fa fa-envelope-o fa-2x"></i></a>
-        <a href="message-task.html" class="btn btn-primary" title="New Task"><b>40 </b><i
-            class="fa fa-bars fa-2x"></i></a>
         <a routerLink="/login" class="btn btn-danger" title="Logout"><i class="fa fa-exclamation-circle fa-2x"></i></a>
       </div>
     </nav>
@@ -32,17 +28,7 @@
       <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
           <li>
-            <div class="user-img-div">
-              <img src="assets/img/user.png" class="img-thumbnail" />
-              <div class="inner-text">
-                <span class="user-name">{{userName}}</span>
-                <br />
-                <small>Last Login: 2 Weeks Ago</small>
-              </div>
-            </div>
-          </li>
-          <li>
-            <a class="active-menu" href="/home"><i class="fa fa-dashboard "></i>Dashboard</a>
+            <a href="/home"><i class="fa fa-dashboard "></i>Dashboard</a>
           </li>
           <li class="menu-item" [class.active]="menuActiveForms">
             <a href="javascript:void(0);" class="menu-toggle" (click)="toggleMenuForms()">
@@ -59,23 +45,41 @@
                 <a href="/product_Detail"><i class="fa fa-desktop"></i>Create Product_Detail</a>
               </li>
             </ul>
-          <li class="menu-item" [class.active]="menuActiveList">
-            <a href="javascript:void(0);" class="menu-toggle" (click)="toggleMenuList()">
+          <li class="menu-item" [class.active]="menuActiveDataTables">
+            <a href="javascript:void(0);" class="menu-toggle" (click)="toggleMenuDataTables()">
               <i class="fa fa-flash "></i>Data Tables <span class="fa arrow"></span>
             </a>
-            <ul class="nav nav-second-level" *ngIf="menuActiveList"> <!-- Sử dụng *ngIf để hiển thị menu con -->
+            <ul class="nav nav-second-level" *ngIf="menuActiveDataTables"> <!-- Sử dụng *ngIf để hiển thị menu con -->
               <li>
                 <a href="/product_list"><i class="fa fa-desktop"></i>Form_List_Product</a>
               </li>
             </ul>
           </li>
-          <li class="menu-item" [class.active]="menuActiveList">
-            <a href="javascript:void(0);" class="menu-toggle" (click)="toggleMenuList()">
+          <li class="menu-item" [class.active]="menuActiveReports">
+            <a href="javascript:void(0);" class="menu-toggle" (click)="toggleMenuReports()">
               <i class="fa fa-flash "></i>Reports<span class="fa arrow"></span>
             </a>
-            <ul class="nav nav-second-level" *ngIf="menuActiveList"> <!-- Sử dụng *ngIf để hiển thị menu con -->
+            <ul class="nav nav-second-level" *ngIf="menuActiveReports"> <!-- Sử dụng *ngIf để hiển thị menu con -->
               <li>
                 <a href="/reports/payment"><i class="fa fa-desktop"></i>Payments</a>
+              </li>
+            </ul>
+          </li>
+          <li class="menu-item" [class.active]="menuActiveStock">
+            <a href="javascript:void(0);" class="menu-toggle" (click)="toggleMenuStock()">
+              <i class="fa fa-flash "></i>Stock Management<span class="fa arrow"></span>
+            </a>
+            <ul class="nav nav-second-level" *ngIf="menuActiveStock"> <!-- Sử dụng *ngIf để hiển thị menu con -->
+              <li>
+                <a href="/stock"><i class="fa fa-desktop"></i>Stock</a>
+              </li>
+            </ul>
+            <ul class="nav nav-second-level" *ngIf="menuActiveStock"> <!-- Sử dụng *ngIf để hiển thị menu con -->
+              <li>
+                <a href="/stock/restock"><i class="fa fa-desktop"></i>Restock</a>
+              </li>
+              <li>
+                <a href="/stock/history"><i class="fa fa-desktop"></i>Restock History</a>
               </li>
             </ul>
           </li>
