@@ -26,7 +26,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let payment of payments">
+                  <tr *ngFor="let payment of payments | paginate: { itemsPerPage: 10, currentPage: page }">
                     <td>{{ payment.id }}</td>
                     <td>{{ payment.userId }}</td>
                     <td>{{ payment.orderId }}</td>
@@ -64,6 +64,9 @@
                   </tr>
                 </tbody>
               </table>
+              <!-- Pagination -->
+              <pagination-controls (pageChange)="page = $event"></pagination-controls>
+
             </div>
           </div>
         </div>

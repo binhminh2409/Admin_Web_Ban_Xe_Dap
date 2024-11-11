@@ -17,6 +17,9 @@
             <p><strong>Total Price:</strong> {{ delivery.payment.totalPrice | currency }}</p>
             <p><strong>Method:</strong> {{ delivery.payment.method }}</p>
           </div>
+          <!-- Action buttons -->
+          <button class="btn btn-danger" (click)="cancelDelivery(delivery)">Cancel</button>
+          <button class="btn btn-primary" (click)="moveToNextStage(delivery)">Move to Next Stage</button>
         </div>
       </div>
     </div>
@@ -38,6 +41,9 @@
             <p><strong>Total Price:</strong> {{ delivery.payment.totalPrice | currency }}</p>
             <p><strong>Method:</strong> {{ delivery.payment.method }}</p>
           </div>
+          <!-- Action buttons -->
+          <button class="btn btn-danger" (click)="cancelDelivery(delivery)">Cancel</button>
+          <button class="btn btn-primary" (click)="moveToNextStage(delivery)">Move to Next Stage</button>
         </div>
       </div>
     </div>
@@ -59,6 +65,8 @@
             <p><strong>Total Price:</strong> {{ delivery.payment.totalPrice | currency }}</p>
             <p><strong>Method:</strong> {{ delivery.payment.method }}</p>
           </div>
+          <!-- Only "Cancel" button here since "Delivered" is the final stage -->
+          <button class="btn btn-danger" (click)="cancelDelivery(delivery)">Cancel</button>
         </div>
       </div>
     </div>

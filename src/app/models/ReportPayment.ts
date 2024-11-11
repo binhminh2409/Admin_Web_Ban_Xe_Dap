@@ -11,6 +11,6 @@ export interface ReportPayment {
     createdTime: string;
     updatedTime: string;
     showBookingInfo: boolean;
-    bookingInfo: OrderWithDetail
+    bookingInfo?: OrderWithDetail
   }
   

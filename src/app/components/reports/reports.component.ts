@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportsService } from '../../service/reports.service'; // Assuming there's a service to fetch payment data
 import { ReportPayment } from '../../models/ReportPayment';
-
+import { OrderWithDetail } from '../../models/OrderWithDetails';
+import { PaginationService } from 'ngx-pagination';
 
 @Component({
   selector: 'app-reports',
@@ -10,21 +11,30 @@ import { ReportPayment } from '../../models/ReportPayment';
 })
 export class ReportsComponent implements OnInit {
   payments: ReportPayment[] = [];
-
-
-
+  currentPage: number = 1; // Current page for pagination
+  itemsPerPage: number = 10; // Items per page for pagination
+  totalItems: number = 50;
   constructor(private reportsService: ReportsService) { }
-
+  page: number = 1;
   ngOnInit(): void {
     this.loadPayments();
+    
   }
 
+
+
   loadPayments(): void {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = this.currentPage * this.itemsPerPage
+
     this.reportsService.getPayments().subscribe(
       (response: any) => {
         if (response.success && Array.isArray(response.data)) {
-          this.payments = response.data;
+          this.payments = response.data.slice(startIndex, endIndex);
+          this.totalItems = response.data.length;  // Cập nhật tổng số item
           this.payments.forEach(payment => payment.showBookingInfo = false);
+          this.payments = response.data.slice(startIndex, endIndex);
+          console.log('Payments:', this.payments);
         } else {
           console.error('Invalid data:', response);
         }
@@ -63,6 +73,11 @@ export class ReportsComponent implements OnInit {
         error => console.error('Error fetching booking info:', error)
       );
     }
+  }
+
+  pageChanged(page: number): void {
+    this.currentPage = page;
+    this.loadPayments();
   }
 
 }

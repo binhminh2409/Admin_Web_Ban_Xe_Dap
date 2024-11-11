@@ -1,12 +1,103 @@
 @media (min-width: 768px) {
   #page-wrapper {
-      margin: 0 0 0 260px;
-      padding: 15px 30px;
-      min-height: 1200px;
+    margin: 0 0 0 260px;
+    padding: 15px 30px;
+    min-height: 1200px;
+    width: 100%;
+    /* Đặt chiều rộng chiếm toàn bộ màn hình */
   }
 }
 
 .user-name {
-  font-size: 24px; /* Điều chỉnh kích thước theo ý muốn */
-  font-weight: bold; /* Nếu bạn muốn chữ đậm */
+  font-size: 24px;
+  /* Điều chỉnh kích thước theo ý muốn */
+  font-weight: bold;
+  /* Nếu bạn muốn chữ đậm */
+}
+
+/* Style cho logo (navbar-brand) */
+.navbar-brand {
+  font-size: 24px;
+  /* Kích thước font lớn hơn */
+  font-weight: bold;
+  /* Làm đậm chữ */
+  color: #fff;
+  /* Màu chữ trắng */
+  text-decoration: none;
+  /* Bỏ gạch chân */
+  padding: 10px 20px;
+  /* Thêm khoảng cách xung quanh */
+}
+
+.navbar-brand:hover {
+  color: #af4c54;
+  /* Đổi màu chữ khi di chuột vào */
+  text-decoration: none;
+  /* Bỏ gạch chân khi di chuột vào */
+}
+
+/* Tùy chọn: điều chỉnh chiều rộng sidebar nếu cần */
+.sidebar-collapse {
+  width: 100%;
+  /* Bạn có thể thay đổi tùy ý */
+  height: 100%;
+}
+
+.sidebar-collapse {
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  width: 100%;
+}
+
+.navbar-side {
+  position: fixed;
+  /* Gắn sidebar vào một vị trí cố định */
+  top: 0;
+  /* Đặt vị trí bắt đầu từ trên cùng */
+  left: 0;
+  /* Đặt vị trí bắt đầu từ bên trái */
+  width: 260px;
+  /* Chiều rộng sidebar */
+  height: 100%;
+  /* Chiều cao chiếm toàn bộ màn hình */
+  background-color: #222;
+  /* Màu nền sidebar */
+  z-index: 1000;
+  /* Đảm bảo sidebar nằm trên các phần tử khác */
+  padding-top: 0px;
+  /* Khoảng cách từ trên xuống */
+}
+
+h1 {
+  font-family: 'Arial', sans-serif;
+  /* Chọn font chữ */
+  font-size: 36px;
+  /* Kích thước chữ */
+  font-weight: bold;
+  /* Đậm chữ */
+  color: #fff;
+  /* Màu chữ trắng */
+  text-align: center;
+  /* Căn giữa chữ */
+  text-transform: uppercase;
+  /* Viết hoa tất cả các chữ */
+  margin: 0px 0;
+  /* Khoảng cách trên và dưới */
+  padding: 10px;
+  /* Khoảng cách bên trong */
+  /* Màu nền */
+  border-radius: 5px;
+  /* Bo tròn góc */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Tạo bóng cho văn bản */
+}
+
+.navbar-default {
+  background-color: #222;
+  /* Màu nền sáng (hoặc bất kỳ mã màu nào bạn muốn) */
 }
