@@ -11,14 +11,20 @@ import { Router } from '@angular/router';
 })
 export class ProductListComponent implements OnInit {
   products: ProductBicycle[] = [];
+  paginatedProducts: ProductBicycle[] = []; // Dữ liệu cho trang hiện tại
+  currentPage: number = 1;
+  pageSize: number = 10;
+  totalProducts: number = 0;
   isSidebarOpen: boolean = true;
+
   constructor(private productService: ProductBicycleService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadProducts();
   }
+
   toggleSidebar(): void {
-    this.isSidebarOpen = !this.isSidebarOpen; // Đảo ngược trạng thái của sidebar
+    this.isSidebarOpen = !this.isSidebarOpen;
   }
 
   loadProducts(): void {
@@ -26,6 +32,8 @@ export class ProductListComponent implements OnInit {
       (response: any) => {
         if (response.success && Array.isArray(response.data)) {
           this.products = response.data;
+          this.totalProducts = this.products.length;
+          this.updatePaginatedProducts();
         } else {
           console.error('Dữ liệu không hợp lệ:', response);
         }
@@ -37,9 +45,22 @@ export class ProductListComponent implements OnInit {
     );
   }
 
+  updatePaginatedProducts(): void {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedProducts = this.products.slice(startIndex, endIndex);
+  }
+
+  goToPage(page: number): void {
+    this.currentPage = page;
+    this.updatePaginatedProducts();
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.totalProducts / this.pageSize);
+  }
+
   editProduct(product: ProductBicycle): void {
-    console.log('Sửa sản phẩm:', product);
-    // Điều hướng đến trang sửa sản phẩm với ID sản phẩm
     this.router.navigate(['/product', { product: JSON.stringify(product) }]);
   }
 
@@ -48,6 +69,8 @@ export class ProductListComponent implements OnInit {
       this.productService.deleteProductBicycle(Id).subscribe(
         () => {
           this.products = this.products.filter(product => product.id !== Id);
+          this.totalProducts = this.products.length;
+          this.updatePaginatedProducts();
           alert('Sản phẩm đã được xóa thành công.');
         },
         (error) => {
@@ -59,7 +82,6 @@ export class ProductListComponent implements OnInit {
   }
 
   getImageUrl(data: ProductBicycle): string {
-    const imageUrl = data && data.id ? `${environment.apiUrl}/Products/images/product/${data.id}` : '';
-    return imageUrl;
+    return data && data.id ? `${environment.apiUrl}/Products/images/product/${data.id}` : '';
   }
 }

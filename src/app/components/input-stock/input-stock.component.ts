@@ -18,7 +18,9 @@ export class InputStockComponent implements OnInit {
         createdTime: new Date(),
         type: 'RESTOCK',
         price: 0,
-        totalPrice: 0
+        totalPrice: 0,
+        status: "ORDERED",
+        paid: false
     };
     loadingProducts: boolean = true; 
     passedProduct: Product = history.state.product;
@@ -35,6 +37,8 @@ export class InputStockComponent implements OnInit {
             quantity: 0,
             createdTime: new Date(),
             type: 'RESTOCK',
+            status: "ORDERED",
+            paid: false,
             price: 0,
             totalPrice: 0
         });
@@ -82,6 +86,8 @@ export class InputStockComponent implements OnInit {
             createdTime: new Date(),
             type: 'RESTOCK',
             price: 0,
+            status: "ORDERED",
+            paid: false,
             totalPrice: 0
         };
     }

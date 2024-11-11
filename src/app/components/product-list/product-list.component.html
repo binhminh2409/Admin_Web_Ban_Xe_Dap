@@ -13,7 +13,21 @@
 
     <!-- Thanh điều hướng (Sidebar) -->
     <div class="row">
-
+      <div class="col-md-3">
+        <div class="sidebar" [ngClass]="{'sidebar-open': isSidebarOpen}">
+          <div class="sidebar-header">
+            <h2 class="logo">Admin</h2>
+          </div>
+          <ul class="nav-list">
+            <li><a href="/home"><i class="fa fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="#"><i class="fa fa-box"></i> Orders</a></li>
+            <li><a href="#"><i class="fa fa-users"></i> Customers</a></li>
+            <li><a href="#"><i class="fa fa-cogs"></i> Settings</a></li>
+            <li><a href="#"><i class="fa fa-chart-line"></i> Reports</a></li>
+            <li><a href="#"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+          </ul>
+        </div>
+      </div>
 
       <!-- Nội dung chính -->
       <div class="col-md-9">
@@ -39,7 +53,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let product of products">
+                  <tr *ngFor="let product of paginatedProducts">
                     <td>{{ product.id }}</td>
                     <td>{{ product.productName }}</td>
                     <td>{{ product.price | currency }}</td>
@@ -63,7 +77,17 @@
                   </tr>
                 </tbody>
               </table>
+            
+              <!-- Điều hướng phân trang -->
+              <div class="pagination">
+                <button *ngFor="let page of [].constructor(totalPages); let i = index" 
+                        (click)="goToPage(i + 1)" 
+                        [class.active]="currentPage === i + 1">
+                  {{ i + 1 }}
+                </button>
+              </div>
             </div>
+            
           </div>
         </div>
       </div>

@@ -34,6 +34,45 @@ export class StockService {
     );
   }
 
+  restockArrived(batchNo: string): Observable<InputStock[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post<{ success: boolean; httpStatusCode: number; message: string; data: InputStock[] }>(
+      `${this.apiUrl}/Restock/Arrived/${batchNo}`,
+      {},
+      { headers }
+    ).pipe(
+      map(response => response.data) // Extracting the data from the response
+    );
+  }
+
+  restockReturned(batchNo: string): Observable<InputStock[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post<{ success: boolean; httpStatusCode: number; message: string; data: InputStock[] }>(
+      `${this.apiUrl}/Restock/Returned/${batchNo}`,
+      {},
+      { headers }
+    ).pipe(
+      map(response => response.data) // Extracting the data from the response
+    );
+  }
+
+  restockPaid(batchNo: string): Observable<InputStock[]> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post<{ success: boolean; httpStatusCode: number; message: string; data: InputStock[] }>(
+      `${this.apiUrl}/Restock/Confirm/${batchNo}`,
+      {},
+      { headers }
+    ).pipe(
+      map(response => response.data) // Extracting the data from the response
+    );
+  }
+
   getRestockHistory(): Observable<InputStock[]> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

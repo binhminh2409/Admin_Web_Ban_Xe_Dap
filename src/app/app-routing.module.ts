@@ -12,6 +12,7 @@ import { InputStockComponent } from './components/input-stock/input-stock.compon
 import { RestockHistoryComponent } from './components/restock-history/restock-history.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PackagesComponent } from './components/packages/packages.component';
+import { RestockOrderComponent } from './components/restock-order/restock-order.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'stock',component: StockListComponent},
   { path: 'stock/restock',component: InputStockComponent},
   { path: 'stock/history',component: RestockHistoryComponent},
+  { path: 'stock/restock/orders',component: RestockOrderComponent},
   { path: 'packages',component: PackagesComponent},
 ];
 

@@ -307,3 +307,26 @@ body {
   border-radius: 4px;
   object-fit: cover;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #337ab7;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination button.active {
+  background-color: #23527c;
+}
+
+.pagination button:hover:not(.active) {
+  background-color: #5c85d6;
+}

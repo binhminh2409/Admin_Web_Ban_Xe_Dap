@@ -19,6 +19,7 @@ import { RestockHistoryComponent } from './components/restock-history/restock-hi
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PackagesComponent } from './components/packages/packages.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { RestockOrderComponent } from './components/restock-order/restock-order.component';
 
 export function jwtOptionsFactory() {
   return {
@@ -46,7 +47,8 @@ export function jwtOptionsFactory() {
     InputStockComponent,
     RestockHistoryComponent,
     DashboardComponent,
-    PackagesComponent
+    PackagesComponent,
+    RestockOrderComponent
   ],
   imports: [
     FormsModule,

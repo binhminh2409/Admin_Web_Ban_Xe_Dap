@@ -19,6 +19,7 @@
               <th>Quantity</th>
               <th>Status</th>
               <th>Total Price</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -38,7 +39,11 @@
                   <td class="text-aligned">{{ item.totalPrice | currency: 'VND' }}</td>
                   
                   <!-- Action Buttons -->
-
+                  <td>
+                    <button (click)="orderArrived(item)">Arrived</button>
+                    <button (click)="orderReturned(item)">Returned</button>
+                    <button (click)="orderPaid(item)">Paid</button>
+                  </td>
                 </tr>
               </ng-container>
             </ng-container>

@@ -4,10 +4,10 @@ import { InputStock } from '../../models/InputStock'; // Assuming InputStock mod
 
 @Component({
     selector: 'app-input-stock',
-    templateUrl: './restock-history.component.html',
-    styleUrls: ['./restock-history.component.scss']
+    templateUrl: './restock-order.component.html',
+    styleUrls: ['./restock-order.component.scss']
 })
-export class RestockHistoryComponent implements OnInit {
+export class RestockOrderComponent implements OnInit {
     inputStocks: InputStock[] = [];
     groupedRestockData: { batchNo: string; items: InputStock[] }[] = [];
     userData: { [userId: number]: { name: string, email: string } } = {}; // Store user data
@@ -22,6 +22,7 @@ export class RestockHistoryComponent implements OnInit {
     ngOnInit(): void {
         this.getRestockHistory();
     }
+
     get filteredData() {
         if (!this.searchTerm) {
             return this.groupedRestockData;
@@ -48,8 +49,39 @@ export class RestockHistoryComponent implements OnInit {
 
     getRestockHistory(): void {
         this.stockService.getRestockHistory().subscribe((inputStocks) => {
-            this.inputStocks = inputStocks.filter(stock => stock.status === 'SUCCESSFUL');
+            this.inputStocks = inputStocks;
             this.groupRestockData();
+        });
+    }
+
+    orderArrived(restock: InputStock) {
+        this.stockService.restockArrived(restock.batchNo_ ?? "").subscribe(
+            (updatedStocks: InputStock[]) => this.updateRestockItems(updatedStocks)
+        );
+    }
+
+    orderReturned(restock: InputStock) {
+        this.stockService.restockReturned(restock.batchNo_ ?? "").subscribe(
+            (updatedStocks: InputStock[]) => this.updateRestockItems(updatedStocks)
+        );
+    }
+
+    orderPaid(restock: InputStock) {
+        this.stockService.restockPaid(restock.batchNo_ ?? "").subscribe(
+            (updatedStocks: InputStock[]) => this.updateRestockItems(updatedStocks)
+        );
+    }
+
+    private updateRestockItems(updatedStocks: InputStock[]) {
+        // Loop through the updated stocks and update the groupedRestockData
+        updatedStocks.forEach(updatedStock => {
+            for (let group of this.groupedRestockData) {
+                const itemIndex = group.items.findIndex(item => item.id === updatedStock.id);
+                if (itemIndex !== -1) {
+                    group.items[itemIndex] = updatedStock;  // Replace the old item with the updated one
+                    break;
+                }
+            }
         });
     }
 

@@ -10,6 +10,8 @@ export interface InputStock {
   price: number;
   totalPrice: number;
   batchNo_?: string;
+  status: string;
+  paid: boolean;
   userId?: number;
 }
 
