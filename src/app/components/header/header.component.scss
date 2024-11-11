@@ -8,12 +8,14 @@
   }
 }
 
+
 .user-name {
   font-size: 24px;
   /* Điều chỉnh kích thước theo ý muốn */
   font-weight: bold;
   /* Nếu bạn muốn chữ đậm */
 }
+
 
 /* Style cho logo (navbar-brand) */
 .navbar-brand {
@@ -29,12 +31,14 @@
   /* Thêm khoảng cách xung quanh */
 }
 
+
 .navbar-brand:hover {
   color: #af4c54;
   /* Đổi màu chữ khi di chuột vào */
   text-decoration: none;
   /* Bỏ gạch chân khi di chuột vào */
 }
+
 
 /* Tùy chọn: điều chỉnh chiều rộng sidebar nếu cần */
 .sidebar-collapse {
@@ -43,9 +47,11 @@
   height: 100%;
 }
 
+
 .sidebar-collapse {
   height: 100%;
 }
+
 
 html,
 body {
@@ -53,6 +59,7 @@ body {
   margin: 0;
   width: 100%;
 }
+
 
 .navbar-side {
   position: fixed;
@@ -72,6 +79,7 @@ body {
   padding-top: 0px;
   /* Khoảng cách từ trên xuống */
 }
+
 
 h1 {
   font-family: 'Arial', sans-serif;
@@ -96,6 +104,7 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* Tạo bóng cho văn bản */
 }
+
 
 .navbar-default {
   background-color: #222;
