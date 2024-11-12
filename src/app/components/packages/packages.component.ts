@@ -11,6 +11,8 @@ import { Delivery } from '../../models/Delivery';
 export class PackagesComponent implements OnInit {
   deliveries: Delivery[] = [];
   errorMessage: string | null = null;
+  statusOptions: string[] = [];
+
 
   constructor(private deliveryService: DeliveryService) { }
 
@@ -24,6 +26,14 @@ export class PackagesComponent implements OnInit {
         console.error(error);
       }
     );
+    this.getStatusOptions();
+
+  }
+
+  getStatusOptions(): void {
+    this.deliveryService.getStatus().subscribe((statuses) => {
+      this.statusOptions = statuses;
+    });
   }
 
   getDeliveriesByStatus(status: string): Delivery[] {
@@ -35,14 +45,18 @@ export class PackagesComponent implements OnInit {
     // alert(`Delivery ${delivery.no_} has been canceled.`);
   }
 
-  // Simulate moving delivery to the next stage
-  moveToNextStage(delivery: Delivery): void {
-    if (delivery.status === 'NewOrder') {
-      delivery.status = 'Shipped';
-    } else if (delivery.status === 'Shipped') {
-      delivery.status = 'Delivered';
-    }
+  formatStatus(status: string): string {
+    return status.replace(/([a-z])([A-Z])/g, '$1 $2'); // Adds a space before uppercase letters
   }
+
+  moveToNextStage(delivery: Delivery, event: Event): void {
+    const selectedStatus = (event.target as HTMLSelectElement).value;
+    delivery.status = selectedStatus;
+    this.deliveryService.updateDelivery(delivery).subscribe(updatedDelivery => {
+      console.log('Delivery updated:', updatedDelivery);
+    });
+  }
+  
 }
 
 

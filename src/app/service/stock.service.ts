@@ -26,7 +26,7 @@ export class StockService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http.post<{ success: boolean; httpStatusCode: number; message: string; data: InputStock[] }>(
-      `${this.apiUrl}/Restock`,
+      `${this.apiUrl}/Restock/Order`,
       inputStocks,
       { headers }
     ).pipe(

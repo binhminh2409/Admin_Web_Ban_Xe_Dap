@@ -14,6 +14,7 @@ export class RestockHistoryComponent implements OnInit {
     searchTerm: string = '';
     itemsPerPage: number = 5;
     currentPage: number = 1;
+    totalPages: number = 1;
 
     constructor(
         private stockService: StockService,
@@ -22,9 +23,10 @@ export class RestockHistoryComponent implements OnInit {
     ngOnInit(): void {
         this.getRestockHistory();
     }
+
     get filteredData() {
         if (!this.searchTerm) {
-            return this.groupedRestockData;
+            return this.paginatedData;
         }
 
         const searchLower = this.searchTerm.toLowerCase();
@@ -36,14 +38,42 @@ export class RestockHistoryComponent implements OnInit {
     }
 
     get paginatedData() {
-        // Filter grouped data according to search term
-        if (this.searchTerm) {
-            return this.groupedRestockData.filter(group =>
+        // Filter the data based on the search term (if any)
+        const filteredGroups = this.searchTerm ?
+            this.groupedRestockData.filter(group =>
                 group.batchNo.includes(this.searchTerm) ||
                 group.items.some(item => item.product?.productName.includes(this.searchTerm))
-            );
+            )
+            : this.groupedRestockData;
+
+        // Calculate the total number of pages after filtering
+        const totalFilteredItems = filteredGroups.length;
+        const totalPages = Math.ceil(totalFilteredItems / this.itemsPerPage);
+
+        // Ensure currentPage is within the valid range
+        if (this.currentPage > totalPages) {
+            this.currentPage = totalPages; // Set currentPage to the last page if out of bounds
         }
-        return this.groupedRestockData;
+        if (this.currentPage < 1) {
+            this.currentPage = 1; // Prevent negative page numbers
+        }
+
+        // Calculate pagination indices
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        const endIndex = this.currentPage * this.itemsPerPage;
+
+        console.log(filteredGroups.slice(startIndex, Math.min(endIndex, totalFilteredItems)))
+
+        // Return the paginated data
+        return filteredGroups.slice(startIndex, Math.min(endIndex, totalFilteredItems));
+    }
+
+
+
+    // Function to handle changing pages
+    goToPage(page: number): void {
+        if (page < 1 || page > this.totalPages) return; // Prevent out-of-bounds
+        this.currentPage = page;
     }
 
     getRestockHistory(): void {
@@ -67,6 +97,9 @@ export class RestockHistoryComponent implements OnInit {
             batchNo,
             items: groupedData[batchNo]
         }));
+        this.totalPages = Math.ceil(this.groupedRestockData.length / this.itemsPerPage);
+
+        // Fetch user data for each item
         this.fetchUserData();
     }
 

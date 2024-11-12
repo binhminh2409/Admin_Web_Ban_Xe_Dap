@@ -28,7 +28,7 @@ export interface Payment {
     success: boolean;
     httpStatusCode: number;
     message: string;
-    data: Delivery[];
+    data: any[];
     totalCount: number;
   }
   

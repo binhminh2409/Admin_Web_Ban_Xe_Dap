@@ -1,53 +1,63 @@
 <div id="page-wrapper">
-    <div class="row">
-      <div class="col-md-9">
-        <input 
-          type="text" 
-          [(ngModel)]="searchTerm" 
-          placeholder="Search by Product Name or Batch No" 
-          class="search-bar"
-        />
-        <!-- Table with Pagination -->
-        <table class="restock-table">
-          <thead>
-            <tr>
-              <th>Batch No</th>
-              <th>Created At</th>
-              <th>Creator Name</th>
-              <th>Creator Email</th>
-              <th>Product Name</th>
-              <th>Quantity</th>
-              <th>Status</th>
-              <th>Total Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <ng-container *ngFor="let group of filteredData | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
-              <ng-container *ngFor="let item of group.items; let i = index">
-                <tr>
-                  <!-- Batch Info: Display only in the first row of each batch group -->
-                  <td *ngIf="i === 0" [attr.rowspan]="group.items.length">{{ group.batchNo }}</td>
-                  <td *ngIf="i === 0" [attr.rowspan]="group.items.length">{{ group.items[0].createdTime | date: 'short' }}</td>
-                  <td *ngIf="i === 0" [attr.rowspan]="group.items.length">{{ getUserInfo(group.items[0].userId ?? 0)?.name }}</td>
-                  <td *ngIf="i === 0" [attr.rowspan]="group.items.length">{{ getUserInfo(group.items[0].userId ?? 0)?.email }}</td>
-  
-                  <!-- Product Info: Display for each item -->
-                  <td>{{ item.product?.productName }}</td>
-                  <td>{{ item.quantity }}</td>
-                  <td>{{ item.status }}</td>
-                  <td class="text-aligned">{{ item.totalPrice | currency: 'VND' }}</td>
-                  
-                  <!-- Action Buttons -->
+  <div class="row">
+    <div class="col-md-9">
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search by Product Name or Batch No" class="search-bar" />
 
-                </tr>
-              </ng-container>
+      <!-- Table with Pagination -->
+      <table class="restock-table">
+        <thead>
+          <tr>
+            <th>Batch No</th>
+            <th>Created At</th>
+            <th>Creator Name</th>
+            <th>Creator Email</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Loop through filteredData and apply pagination -->
+          <ng-container *ngFor="let group of paginatedData">
+            <ng-container *ngFor="let item of group.items; let i = index">
+              <tr>
+                <!-- Batch Info: Display only in the first row of each batch group -->
+                <td *ngIf="i === 0" [attr.rowspan]="group.items.length">{{ group.batchNo }}</td>
+                <td *ngIf="i === 0" [attr.rowspan]="group.items.length">{{ group.items[0].createdTime | date: 'short' }}</td>
+                <td *ngIf="i === 0" [attr.rowspan]="group.items.length">{{ getUserInfo(group.items[0].userId ?? 0)?.name }}</td>
+                <td *ngIf="i === 0" [attr.rowspan]="group.items.length">{{ getUserInfo(group.items[0].userId ?? 0)?.email }}</td>
+
+                <!-- Product Info: Display for each item -->
+                <td>{{ item.product?.productName }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.status }}</td>
+                <td class="text-aligned">{{ item.totalPrice | currency: 'VND' }}</td>
+              </tr>
             </ng-container>
-          </tbody>
-        </table>
-  
-        <!-- Pagination Controls -->
-        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+          </ng-container>
+        </tbody>
+      </table>
+
+      <!-- Pagination Controls -->
+      <div class="pagination">
+        <!-- Previous page button -->
+        <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
+          Prev
+        </button>
+
+        <!-- Page number buttons -->
+        <button *ngFor="let page of [].constructor(totalPages); let i = index" (click)="goToPage(i + 1)"
+          [class.active]="currentPage === i + 1">
+          {{ i + 1 }}
+        </button>
+
+        <!-- Next page button -->
+        <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">
+          Next
+        </button>
       </div>
+
     </div>
   </div>
-  
+</div>

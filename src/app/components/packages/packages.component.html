@@ -1,73 +1,40 @@
-<div id="page-wrapper" class="container mt-4">
-  <div class="row">
-    <!-- Picked Column -->
-    <div class="col-md-3 picked-column">
-      <h3 class="column-title">Picked</h3>
-      <div *ngIf="getDeliveriesByStatus('NewOrder').length === 0" class="text-muted">
-        <p>No picked deliveries available.</p>
-      </div>
-      <div *ngFor="let delivery of getDeliveriesByStatus('NewOrder')" class="card delivery-card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Delivery No: {{ delivery.no_ }}</h5>
-          <p><strong>Partner:</strong> {{ delivery.partner }}</p>
-          <p><strong>ETA:</strong> {{ delivery.eta | date: 'medium' }}</p>
-          <p><strong>Created:</strong> {{ delivery.createdTime | date: 'medium' }}</p>
-          <div class="payment-details">
-            <h6>Payment Details</h6>
-            <p><strong>Total Price:</strong> {{ delivery.payment.totalPrice | currency }}</p>
-            <p><strong>Method:</strong> {{ delivery.payment.method }}</p>
-          </div>
-          <!-- Action buttons -->
-          <button class="btn btn-danger" (click)="cancelDelivery(delivery)">Cancel</button>
-          <button class="btn btn-primary" (click)="moveToNextStage(delivery)">Move to Next Stage</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Shipped Column -->
-    <div class="col-md-3 shipped-column">
-      <h3 class="column-title">Shipped</h3>
-      <div *ngIf="getDeliveriesByStatus('Shipped').length === 0" class="text-muted">
-        <p>No shipped deliveries available.</p>
-      </div>
-      <div *ngFor="let delivery of getDeliveriesByStatus('Shipped')" class="card delivery-card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Delivery No: {{ delivery.no_ }}</h5>
-          <p><strong>Partner:</strong> {{ delivery.partner }}</p>
-          <p><strong>ETA:</strong> {{ delivery.eta | date: 'medium' }}</p>
-          <p><strong>Created:</strong> {{ delivery.createdTime | date: 'medium' }}</p>
-          <div class="payment-details">
-            <h6>Payment Details</h6>
-            <p><strong>Total Price:</strong> {{ delivery.payment.totalPrice | currency }}</p>
-            <p><strong>Method:</strong> {{ delivery.payment.method }}</p>
-          </div>
-          <!-- Action buttons -->
-          <button class="btn btn-danger" (click)="cancelDelivery(delivery)">Cancel</button>
-          <button class="btn btn-primary" (click)="moveToNextStage(delivery)">Move to Next Stage</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Delivered Column -->
-    <div class="col-md-3 delivered-column">
-      <h3 class="column-title">Delivered</h3>
-      <div *ngIf="getDeliveriesByStatus('Delivered').length === 0" class="text-muted">
-        <p>No delivered packages available.</p>
-      </div>
-      <div *ngFor="let delivery of getDeliveriesByStatus('Delivered')" class="card delivery-card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Delivery No: {{ delivery.no_ }}</h5>
-          <p><strong>Partner:</strong> {{ delivery.partner }}</p>
-          <p><strong>ETA:</strong> {{ delivery.eta | date: 'medium' }}</p>
-          <p><strong>Created:</strong> {{ delivery.createdTime | date: 'medium' }}</p>
-          <div class="payment-details">
-            <h6>Payment Details</h6>
-            <p><strong>Total Price:</strong> {{ delivery.payment.totalPrice | currency }}</p>
-            <p><strong>Method:</strong> {{ delivery.payment.method }}</p>
-          </div>
-          <!-- Only "Cancel" button here since "Delivered" is the final stage -->
-          <button class="btn btn-danger" (click)="cancelDelivery(delivery)">Cancel</button>
-        </div>
+<div id="page-wrapper">
+  <div id="page-inner">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Delivery List</h2>
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Delivery No</th>
+              <th>Partner</th>
+              <th>ETA</th>
+              <th>Created</th>
+              <th>Total Price</th>
+              <th>Payment Method</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let delivery of deliveries">
+              <td>{{ delivery.no_ }}</td>
+              <td>{{ delivery.partner }}</td>
+              <td>{{ delivery.eta | date: 'medium' }}</td>
+              <td>{{ delivery.createdTime | date: 'medium' }}</td>
+              <td>{{ delivery.payment.totalPrice | currency }}</td>
+              <td>{{ delivery.payment.method }}</td>
+              <td>{{ formatStatus(delivery.status) }}</td>
+              <td>
+                <button class="btn btn-danger" (click)="cancelDelivery(delivery)">Cancel</button>
+                <select *ngIf="delivery.status !== 'Delivered'" 
+                        (change)="moveToNextStage(delivery, $event)">
+                  <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

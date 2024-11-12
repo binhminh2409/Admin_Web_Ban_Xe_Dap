@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportsService } from '../../service/reports.service'; // Assuming there's a service to fetch payment data
 import { ReportPayment } from '../../models/ReportPayment';
-import { OrderWithDetail } from '../../models/OrderWithDetails';
-import { PaginationService } from 'ngx-pagination';
+import { environment } from '../../../environments/environment.prod';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reports',
@@ -11,30 +11,30 @@ import { PaginationService } from 'ngx-pagination';
 })
 export class ReportsComponent implements OnInit {
   payments: ReportPayment[] = [];
-  currentPage: number = 1; // Current page for pagination
-  itemsPerPage: number = 10; // Items per page for pagination
-  totalItems: number = 50;
+  paginatedPayments: ReportPayment[] = []; // Dữ liệu cho trang hiện tại
+  currentPage: number = 1;
+  pageSize: number = 10; // Số lượng payment mỗi trang
+  totalPayments: number = 0; // Tổng số payment
+  isSidebarOpen: boolean = true;
+
   constructor(private reportsService: ReportsService) { }
-  page: number = 1;
+
   ngOnInit(): void {
     this.loadPayments();
-    
   }
 
-
+  toggleSidebar(): void {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
 
   loadPayments(): void {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = this.currentPage * this.itemsPerPage
-
     this.reportsService.getPayments().subscribe(
       (response: any) => {
         if (response.success && Array.isArray(response.data)) {
-          this.payments = response.data.slice(startIndex, endIndex);
-          this.totalItems = response.data.length;  // Cập nhật tổng số item
+          this.payments = response.data;
+          this.totalPayments = this.payments.length;
+          this.updatePaginatedPayments();  // Gọi hàm phân trang
           this.payments.forEach(payment => payment.showBookingInfo = false);
-          this.payments = response.data.slice(startIndex, endIndex);
-          console.log('Payments:', this.payments);
         } else {
           console.error('Invalid data:', response);
         }
@@ -44,6 +44,24 @@ export class ReportsComponent implements OnInit {
         alert('Unable to load payments. Please try again later.');
       }
     );
+  }
+
+  // Cập nhật dữ liệu phân trang
+  updatePaginatedPayments(): void {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedPayments = this.payments.slice(startIndex, endIndex);
+  }
+
+  // Điều hướng đến trang mới
+  goToPage(page: number): void {
+    this.currentPage = page;
+    this.updatePaginatedPayments();
+  }
+
+  // Tổng số trang
+  get totalPages(): number {
+    return Math.ceil(this.totalPayments / this.pageSize);
   }
 
   markAsSuccessful(payment: ReportPayment): void {
@@ -73,11 +91,6 @@ export class ReportsComponent implements OnInit {
         error => console.error('Error fetching booking info:', error)
       );
     }
-  }
-
-  pageChanged(page: number): void {
-    this.currentPage = page;
-    this.loadPayments();
   }
 
 }
