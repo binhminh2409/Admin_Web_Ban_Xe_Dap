@@ -25,4 +25,8 @@ export class TypeService {
   updateBrand(updateFormBrand: any): Observable<any> {
     return this.http.put(`${environment.apiUrl}/Brand/Update`, updateFormBrand);
   }
+
+  getAllType(formData: any): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/Type/All`, formData);
+  }
 }

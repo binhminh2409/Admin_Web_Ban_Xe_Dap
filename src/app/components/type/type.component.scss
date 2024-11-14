@@ -3,11 +3,14 @@
   flex-wrap: wrap;
   margin: -15px; // Giảm bớt khoảng cách giữa các cột
 
-  .col-md-6, .col-sm-6, .col-xs-12 {
+  .col-md-6,
+  .col-sm-6,
+  .col-xs-12 {
     padding: 15px; // Thêm padding cho các cột
     flex: 0 0 50%; // Đặt chiều rộng của cột
     max-width: 50%; // Đặt chiều rộng tối đa
     box-sizing: border-box; // Đảm bảo box-sizing hoạt động đúng
+    margin: auto;
 
     .panel {
       border: 1px solid #ccc; // Đường viền cho panel
@@ -35,4 +38,16 @@
       }
     }
   }
+}
+
+.btn-primary {
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.col-md-12 {
+  width: 100%;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
 }

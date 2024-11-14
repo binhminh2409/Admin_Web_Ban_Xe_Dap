@@ -13,6 +13,7 @@ export class TypeComponent implements OnInit {
   brandForm: FormGroup;
   updateFormBrand: FormGroup;
 
+
   constructor(private fb: FormBuilder, private typeService: TypeService) {
     this.typeForm = this.fb.group({
       name: ['', Validators.required],
@@ -56,6 +57,7 @@ export class TypeComponent implements OnInit {
       this.typeService.createType(formData).subscribe(
         response => {
           this.typeForm.reset();
+          alert('Dữ liệu loại sản phẩm đã được tạo thành công!');
         },
         error => {
           console.error('Lỗi khi gửi dữ liệu:', error);
@@ -75,6 +77,7 @@ export class TypeComponent implements OnInit {
       this.typeService.updateType(updateFormType).subscribe(
         response => {
           this.updateFormType.reset();
+          alert('Dữ liệu loại sản phẩm đã được tạo thành công!');
         },
         error => {
           console.error('Lỗi khi cập nhật dữ liệu:', error);
@@ -95,6 +98,7 @@ export class TypeComponent implements OnInit {
       this.typeService.createBrand(formData).subscribe(
         response => {
           this.brandForm.reset();
+          alert('Thương hiệu đã được tạo thành công!');
         },
         error => {
           console.error('Lỗi khi gửi dữ liệu:', error);
@@ -113,7 +117,7 @@ export class TypeComponent implements OnInit {
       };
       this.typeService.updateBrand(updateFormBrand).subscribe(
         response => {
-          alert('Cr');
+          alert('Dữ liệu được tạo thành công');
           this.updateFormBrand.reset();
         },
         error => {
@@ -124,5 +128,7 @@ export class TypeComponent implements OnInit {
       console.error('Biểu mẫu cập nhật không hợp lệ:', this.updateFormBrand.errors);
     }
   }
-}
+  // Khai báo biến để kiểm soát form hiện tại
+  selectedForm: string = 'formType'; // Khởi tạo với form mặc định là 'formType'
 
+}

@@ -61,8 +61,8 @@
               <div class="form-group">
                 <label>Brand</label>
                 <div class="brands form-control">
-                  <select [(ngModel)]="selectedBrand" (change)="onBrandSelect()">
-                    <option *ngFor="let brand of brands" [ngValue]="brand">{{ brand.brandName }}</option>
+                  <select formControlName="brandId">
+                    <option *ngFor="let brand of brands" [ngValue]="brand.id">{{ brand.brandName }}</option>
                   </select>
                 </div>
                 <p class="help-block"
@@ -75,8 +75,8 @@
               <div class="form-group">
                 <label>Type</label>
                 <div class="types form-control">
-                  <select [(ngModel)]="selectedType" (change)="onTypeSelect()">
-                    <option *ngFor="let type of types" [ngValue]="type">{{ type.name }}</option>
+                  <select formControlName="typeId">
+                    <option *ngFor="let type of types" [ngValue]="type.id">{{ type.name }}</option>
                   </select>
                 </div>
                 <p class="help-block" *ngIf="productForm.get('typeId')?.invalid && productForm.get('typeId')?.touched">
@@ -181,30 +181,12 @@
                   Status is required.
                 </p>
               </div>
-              <div class="form-group">
-                <label for="create">Create Date</label>
-                <input class="form-control" type="date" formControlName="create" id="create">
-                <p class="help-block"
-                  *ngIf="updateFormProduct.get('create')?.invalid && updateFormProduct.get('create')?.touched">
-                  Create date is required.
-                </p>
-              </div>
-              <div class="form-group">
-                <label for="image">Product Image</label>
-                <input class="form-control" type="file" (change)="onFileChange($event)" formControlName="image"
-                  id="image">
-                <p class="help-block"
-                  *ngIf="updateFormProduct.get('image')?.invalid && updateFormProduct.get('image')?.touched">
-                  Image is optional but must be a valid file if provided.
-                </p>
-              </div>
-              <button type="submit" class="btn btn-danger" [disabled]="updateFormProduct.invalid">Update
-                Product</button>
+              <button type="submit" class="btn btn-danger" [disabled]="updateFormProduct.invalid">Update Data</button>
             </form>
           </div>
         </div>
       </div>
+
     </div>
   </div>
-  <!-- /. PAGE INNER  -->
 </div>

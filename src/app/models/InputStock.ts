@@ -13,5 +13,6 @@ export interface InputStock {
   status: string;
   paid: boolean;
   userId?: number;
+  returnReason?: string;
 }
 

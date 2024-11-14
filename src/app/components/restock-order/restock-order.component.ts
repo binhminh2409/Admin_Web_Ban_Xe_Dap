@@ -14,6 +14,7 @@ export class RestockOrderComponent implements OnInit {
     searchTerm: string = '';
     itemsPerPage: number = 5;
     currentPage: number = 1;
+    totalPages: number = 1;
 
     constructor(
         private stockService: StockService,
@@ -21,6 +22,12 @@ export class RestockOrderComponent implements OnInit {
 
     ngOnInit(): void {
         this.getRestockHistory();
+    }
+
+    // Function to handle changing pages
+    goToPage(page: number): void {
+        if (page < 1 || page > this.totalPages) return; // Prevent out-of-bounds
+        this.currentPage = page;
     }
 
     get filteredData() {

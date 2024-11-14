@@ -17,24 +17,33 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let delivery of deliveries">
+            <tr *ngFor="let delivery of paginatedDeliveries">
               <td>{{ delivery.no_ }}</td>
               <td>{{ delivery.partner }}</td>
               <td>{{ delivery.eta | date: 'medium' }}</td>
               <td>{{ delivery.createdTime | date: 'medium' }}</td>
-              <td>{{ delivery.payment.totalPrice | currency }}</td>
+              <td>{{ delivery.payment.totalPrice | currency: 'VND' }}</td>
               <td>{{ delivery.payment.method }}</td>
               <td>{{ formatStatus(delivery.status) }}</td>
               <td>
                 <button class="btn btn-danger" (click)="cancelDelivery(delivery)">Cancel</button>
-                <select *ngIf="delivery.status !== 'Delivered'" 
-                        (change)="moveToNextStage(delivery, $event)">
+                <select *ngIf="delivery.status !== 'Delivered'" (change)="moveToNextStage(delivery, $event)">
                   <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
                 </select>
               </td>
             </tr>
           </tbody>
         </table>
+
+        <!-- Pagination Controls -->
+        <div class="pagination">
+          <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Prev</button>
+          <button *ngFor="let page of [].constructor(totalPages); let i = index" (click)="goToPage(i + 1)"
+            [class.active]="currentPage === i + 1">
+            {{ i + 1 }}
+          </button>
+          <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+        </div>
       </div>
     </div>
   </div>

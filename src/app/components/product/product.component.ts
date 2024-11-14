@@ -20,6 +20,13 @@ export class ProductComponent implements OnInit {
   selectedBrand: BrandSelect | null = null; // For single selection (dropdown)
   selectedType: TypeSelect | null = null; // For single selection (dropdown)
 
+  currentPage: number = 1;
+  totalPages: number = 0;
+  productsPerPage: number = 10; // Adjust this based on how many items per page you need
+  products: ProductBicycle[] = []; // Store all fetched products
+  paginatedProducts: ProductBicycle[] = []; // Products for the current page
+
+
   constructor(private fb: FormBuilder, private productSV: ProductService, private route: ActivatedRoute) {
     this.productForm = this.fb.group({
       productName: ['', Validators.required],
@@ -69,6 +76,8 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  
+
   onBrandSelect() {
     // Update brandId when a brand is selected
     if (this.selectedBrand) {
@@ -84,6 +93,7 @@ export class ProductComponent implements OnInit {
   }
 
   onSubmitProduct() {
+    console.log(this.productForm.value);
     if (this.productForm.valid) {
       const formData = new FormData();
       formData.append('productName', this.productForm.value.productName);

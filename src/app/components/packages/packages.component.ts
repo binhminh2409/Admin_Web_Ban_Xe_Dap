@@ -10,25 +10,52 @@ import { Delivery } from '../../models/Delivery';
 })
 export class PackagesComponent implements OnInit {
   deliveries: Delivery[] = [];
-  errorMessage: string | null = null;
+  paginatedDeliveries: Delivery[] = [];
+  currentPage: number = 1;
+  pageSize: number = 10;
+  totalDeliveries: number = 0;
   statusOptions: string[] = [];
+  errorMessage: string | null = null;
 
 
   constructor(private deliveryService: DeliveryService) { }
 
   ngOnInit(): void {
+    this.loadDeliveries();
+    this.getStatusOptions();
+
+  }
+
+  loadDeliveries(): void {
     this.deliveryService.getDeliveries().subscribe(
       deliveries => {
         this.deliveries = deliveries;
+        this.totalDeliveries = deliveries.length;
+        this.updatePaginatedDeliveries(); 
       },
       error => {
         this.errorMessage = 'Failed to load deliveries';
         console.error(error);
       }
     );
-    this.getStatusOptions();
-
   }
+  
+
+  updatePaginatedDeliveries(): void {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedDeliveries = this.deliveries.slice(startIndex, endIndex);
+  }
+
+  goToPage(page: number): void {
+    this.currentPage = page;
+    this.updatePaginatedDeliveries();
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.totalDeliveries / this.pageSize);
+  }
+
 
   getStatusOptions(): void {
     this.deliveryService.getStatus().subscribe((statuses) => {
@@ -56,7 +83,7 @@ export class PackagesComponent implements OnInit {
       console.log('Delivery updated:', updatedDelivery);
     });
   }
-  
+
 }
 
 

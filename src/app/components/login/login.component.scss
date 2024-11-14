@@ -23,9 +23,7 @@ body {
     padding: 20px; // Padding cho panel body
 }
 
-h5 {
-    margin-bottom: 20px; // Khoảng cách dưới cho tiêu đề
-}
+
 
 .form-group {
     margin-bottom: 15px; // Khoảng cách dưới cho nhóm form
@@ -33,4 +31,36 @@ h5 {
 
 .btn {
     width: 100%; // Nút chiếm toàn bộ chiều rộng
+}
+
+h1 {
+    font-family: 'Arial', sans-serif;
+    /* Chọn phông chữ hiện đại */
+    font-size: 48px;
+    /* Kích thước chữ lớn để dễ nhìn */
+    font-weight: bold;
+    /* Chữ đậm để tiêu đề nổi bật */
+    color: #3498db;
+    /* Màu xanh sáng để tạo cảm giác tươi mới */
+    text-align: center;
+    /* Căn giữa tiêu đề */
+    text-transform: uppercase;
+    /* Chuyển tất cả chữ thành chữ hoa */
+    letter-spacing: 2px;
+    /* Kéo giãn các chữ một chút để dễ đọc */
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    /* Đổ bóng nhẹ phía dưới chữ */
+    margin: 5px 0;
+    /* Cung cấp khoảng cách phía trên và dưới tiêu đề */
+    padding: 10px 0;
+    /* Padding trên và dưới */
+}
+
+h1:hover {
+    color: #e74c3c;
+    /* Thay đổi màu sắc khi hover vào tiêu đề */
+    transform: scale(1.05);
+    /* Phóng to tiêu đề khi hover */
+    transition: color 0.3s, transform 0.3s;
+    /* Thêm hiệu ứng chuyển động mượt mà */
 }

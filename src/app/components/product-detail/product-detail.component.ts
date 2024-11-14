@@ -47,4 +47,6 @@ export class ProductDetailComponent {
       );
     }
   }
+  selectedForm: string = 'productDetailForm'; // Giá trị mặc định là form đầu tiên
+
 }

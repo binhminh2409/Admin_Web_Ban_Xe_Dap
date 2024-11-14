@@ -84,4 +84,18 @@ export class ProductListComponent implements OnInit {
   getImageUrl(data: ProductBicycle): string {
     return data && data.id ? `${environment.apiUrl}/Products/images/product/${data.id}` : '';
   }
+
+  
+  getDisplayedPages(): number[] {
+    const totalPages = this.totalPages;
+    const maxDisplayedPages = 5;
+    let startPage = Math.max(1, this.currentPage - Math.floor(maxDisplayedPages / 2));
+    let endPage = Math.min(totalPages, startPage + maxDisplayedPages - 1);
+
+    if (endPage - startPage < maxDisplayedPages - 1) {
+      startPage = Math.max(1, endPage - maxDisplayedPages + 1);
+    }
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+  }
 }

@@ -20,6 +20,7 @@ export class InputStockComponent implements OnInit {
         price: 0,
         totalPrice: 0,
         status: "ORDERED",
+        returnReason: "",
         paid: false
     };
     loadingProducts: boolean = true; 

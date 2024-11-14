@@ -1,332 +1,119 @@
-/* Cơ bản */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background-color: #333;
-  color: white;
-  position: fixed;
-  height: 100vh;
-  top: 0;
-  left: -250px;
-  transition: left 0.3s ease;
-}
-
-.sidebar-header {
-  padding: 20px;
-  background-color: #222;
-  text-align: center;
-}
-
-.sidebar-header .logo {
-  color: #fff;
-  font-size: 24px;
-  margin: 0;
-}
-
-.nav-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.nav-list li {
-  border-bottom: 1px solid #444;
-}
-
-.nav-list li a {
-  display: block;
-  padding: 15px;
-  color: white;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.nav-list li a:hover {
-  background-color: #575757;
-}
-
-.nav-list li a i {
-  margin-right: 10px;
-}
-
-/* Main content */
 #page-wrapper {
-  margin-left: 250px;  /* Giữ margin-left để giữ khoảng cách với sidebar */
-  width: calc(100% - 250px); /* Giảm chiều rộng của phần nội dung chính để không vượt qua sidebar */
-  transition: margin-left 0.3s ease;
-}
-
-/* Header */
-.page-head-line {
-  font-size: 30px;
-  margin: 20px 0;
-  text-align: center;
-}
-
-/* Table animation */
-.table-responsive table {
-  width: 100%;
-  border-collapse: collapse;
-  opacity: 0;
-  animation: fadeIn 0.5s forwards;
-  margin-right: 20px; /* Giảm khoảng cách bên phải của bảng */
-  box-sizing: border-box; /* Bao gồm cả padding và border vào kích thước */
-}
-
-.table th, .table td {
-  padding: 8px 12px; /* Giảm padding để bảng không bị rộng quá */
-  border: 1px solid #ddd;
-  text-align: center;
-}
-
-.table th {
-  background-color: #f4f4f4;
-  font-weight: bold;
-}
-
-.table tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* Description hover animation */
-.product-description {
-  max-width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  transition: max-width 0.5s ease;
-}
-
-.product-description.expanded {
-  max-width: 500px;
-  white-space: normal;
-}
-
-/* Buttons */
-.btn {
-  padding: 5px 10px;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.btn-edit {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.btn-edit:hover {
-  background-color: #45a049;
-}
-
-.btn-delete {
-  background-color: #f44336;
-  color: white;
-}
-
-.btn-delete:hover {
-  background-color: #e53935;
-}
-
-/* Sidebar toggle animation */
-.sidebar-open {
-  left: 0;
-}
-
-#toggle-btn {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background-color: #333;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 4px;
-  z-index: 100;
-}
-
-#toggle-btn:hover {
-  background-color: #575757;
-}
-
-/* Animation keyframes */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-/* Cơ bản */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background-color: #333;
-  color: white;
-  position: fixed;
-  height: 100vh;
-  top: 0;
-  left: -250px;
-  transition: left 0.3s ease;
-  margin: 0;
-}
-
-.sidebar-header {
   padding: 20px;
-  background-color: #222;
-  text-align: center;
+
+  .page-head-line {
+    margin: 0 0 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .panel-product {
+    margin: 10px 0;
+
+    .panel-heading {
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+
+      .table {
+        width: 100%;
+        margin: 0;
+
+        th {
+          background-color: #f9f9f9;
+          font-weight: bold;
+          text-align: left;
+        }
+
+        td {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
 }
 
-.sidebar-header .logo {
-  color: #fff;
-  font-size: 24px;
-  margin: 0;
-}
-
-.nav-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.nav-list li {
-  border-bottom: 1px solid #444;
-}
-
-.nav-list li a {
-  display: block;
-  padding: 15px;
-  color: white;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.nav-list li a:hover {
-  background-color: #575757;
-}
-
-.nav-list li a i {
-  margin-right: 10px;
-}
-
-/* Main content */
-.row {
-  display: flex; /* Sử dụng flex để căn chỉnh các cột */
-  width: 100%;
-}
-
-.col-md-3 {
-  padding: 0; /* Loại bỏ padding nếu có */
-  flex: 0 0 50px; /* Đảm bảo sidebar chiếm đúng không gian */
-}
-
-.col-md-9 {
-  padding-left: 20px; /* Giảm khoảng cách bên trái của nội dung */
-  flex: 1; /* Nội dung chiếm phần còn lại của không gian */
-}
-
-.panel-custom {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #ffffff;
-}
-
-.panel-heading {
-  background-color: #337ab7;
-  color: #fff;
-  padding: 10px 15px;
-  border-bottom: 1px solid #ddd;
-  font-size: 18px;
-}
-
-.panel-body {
-  padding: 15px;
-}
-
-.panel-title {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.table-responsive {
-  margin-top: 20px;
-}
-
-.product-description {
-  max-width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  transition: max-width 0.5s ease;
-}
-
-.product-description.expanded {
-  max-width: 500px;
-  white-space: normal;
-}
-
-/* Sidebar toggle animation */
-.sidebar-open {
-  left: 0;
-}
-
-#toggle-btn {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background-color: #333;
-  color: white;
-  border: none;
+.product-info {
+  margin-top: 10px;
   padding: 10px;
-  cursor: pointer;
-  border-radius: 4px;
-  z-index: 100;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
-#toggle-btn:hover {
-  background-color: #575757;
+/* Product Status Styling */
+
+.product-status-pending {
+  background-color: #ffeb3b !important;
+  color: #333;
 }
 
-/* Ảnh sản phẩm */
-.img-fluid {
-  border-radius: 4px;
-  object-fit: cover;
+.product-status-processing {
+  background-color: #29b6f6 !important;
+  color: #fff;
 }
-.pagination {
+
+.product-status-confirmed {
+  background-color: #ff9800 !important;
+  color: #fff;
+}
+
+.product-status-successful {
+  background-color: #3ea541 !important;
+  color: #ffffff;
+}
+
+.product-status-failed {
+  background-color: #f44336 !important;
+  color: #fff;
+}
+
+/* Disabled Button Styling */
+.received-product-btn:disabled {
+  background-color: #d3d3d3 !important;
+  color: #888888;
+  cursor: not-allowed;
+  border-color: #cccccc;
+}
+
+/* Pagination Styling */
+
+.pagination-product {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-.pagination button {
-  background-color: #337ab7;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  margin: 0 5px;
+.pagination-product button {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  margin: 0 4px;
   cursor: pointer;
+  font-size: 16px;
   border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
-.pagination button.active {
-  background-color: #23527c;
+.pagination-product button:hover {
+  background-color: #ddd;
 }
 
-.pagination button:hover:not(.active) {
-  background-color: #5c85d6;
+.pagination-product button.active {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #4CAF50;
+}
+
+.pagination-product button[disabled] {
+  background-color: #f0f0f0;
+  color: #ccc;
+  cursor: not-allowed;
+  border: 1px solid #ddd;
 }

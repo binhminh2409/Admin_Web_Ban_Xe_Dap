@@ -11,34 +11,45 @@
 
         <div class="panel panel-default">
           <div class="panel-body">
-            <div class="stock-list">
-              <!-- Filtered list of stock items -->
-              <div class="stock-card" *ngFor="let stock of filteredStocks()">
-                <div class="stock-card-header">
-                  <img [src]="getImageUrl(stock.product)" alt="{{ stock.product.productName }}" class="stock-image" />
-                </div>
-                <div class="stock-card-body">
-                  <h3 class="stock-name">{{ stock.product.productName }}</h3>
-                  <p class="stock-price">{{ stock.product.price | currency }}</p>
-                  <p class="stock-quantity">Quantity in stock: {{ stock.quantity }}</p>
-                  <p class="stock-color">Color: {{ stock.product.colors }}</p>
-                  <p class="stock-size">Size: {{ stock.product.size || 'N/A' }}</p>
-                </div>
-                <!-- <div class="stock-card-footer">
-                  <button (click)="updateStock(stock)" class="btn btn-primary">
-                    Update Stock
-                  </button>
-                </div> -->
-                <div class="stock-card-footer">
-                  <button (click)="restock(stock.product)" class="btn btn-primary">
-                    Restock
-                  </button>
-                </div>
-              </div>
+            <!-- Table for displaying stock items -->
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Color</th>
+                  <th>Size</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let stock of paginatedStocks">
+                  <td>
+                    <img [src]="getImageUrl(stock.product)" alt="{{ stock.product.productName }}"
+                      class="stock-image-thumbnail" />
+                  </td>
+                  <td>{{ stock.product.productName }}</td>
+                  <td>{{ stock.product.price | currency }}</td>
+                  <td>{{ stock.quantity }}</td>
+                  <td>{{ stock.product.colors }}</td>
+                  <td>{{ stock.product.size || 'N/A' }}</td>
+                  <td>
+                    <button (click)="restock(stock.product)" class="btn btn-primary">Restock</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="pagination">
+              <button *ngFor="let page of getDisplayedPages()" (click)="goToPage(page)"
+                [class.active]="currentPage === page">
+                {{ page }}
+              </button>
             </div>
+
           </div>
         </div>
-
       </div>
     </div>
   </div>

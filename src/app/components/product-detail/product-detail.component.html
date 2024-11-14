@@ -3,35 +3,45 @@
     <div class="row">
       <div class="col-md-12">
         <h1 class="page-head-line">Basic Forms</h1>
-        <h1 class="page-subhead-line">This is dummy text , you can replace it with your original text. </h1>
       </div>
     </div>
+
+    <!-- Điều khiển chuyển đổi giữa các form -->
     <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-primary" (click)="selectedForm = 'productDetailForm'">Product Detail Form</button>
+        <button class="btn btn-primary" (click)="selectedForm = 'signupForm'">Signup Form</button>
+      </div>
+    </div>
+
+    <!-- Form chi tiết sản phẩm -->
+    <div class="row" *ngIf="selectedForm === 'productDetailForm'">
       <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="panel panel-info">
-          <div class="panel-heading">
-            Product Detail Form
-          </div>
+          <div class="panel-heading">Product Detail Form</div>
           <div class="panel-body">
             <form [formGroup]="productDetailForm" (ngSubmit)="submitForm()">
               <div class="form-group">
                 <label>Enter Product Code</label>
                 <input class="form-control" type="text" formControlName="ProductID">
-                <p class="help-block" *ngIf="productDetailForm.get('ProductID')?.invalid && productDetailForm.get('ProductID')?.touched">
+                <p class="help-block"
+                  *ngIf="productDetailForm.get('ProductID')?.invalid && productDetailForm.get('ProductID')?.touched">
                   Please enter product code.
                 </p>
               </div>
               <div class="form-group">
                 <label>Enter Weight</label>
                 <input class="form-control" type="number" formControlName="Weight">
-                <p class="help-block" *ngIf="productDetailForm.get('Weight')?.invalid && productDetailForm.get('Weight')?.touched">
+                <p class="help-block"
+                  *ngIf="productDetailForm.get('Weight')?.invalid && productDetailForm.get('Weight')?.touched">
                   Please enter product weight.
                 </p>
               </div>
               <div class="form-group">
                 <label>Other Details</label>
                 <textarea class="form-control" rows="3" formControlName="Other_Details"></textarea>
-                <p class="help-block" *ngIf="productDetailForm.get('Other_Details')?.invalid && productDetailForm.get('Other_Details')?.touched">
+                <p class="help-block"
+                  *ngIf="productDetailForm.get('Other_Details')?.invalid && productDetailForm.get('Other_Details')?.touched">
                   Please enter other information.
                 </p>
               </div>
@@ -40,19 +50,21 @@
                 <input class="form-control" type="file" multiple (change)="onFileSelect($event)">
                 <p class="help-block">Select one or more images.</p>
               </div>
-              <button type="submit" class="btn btn-info" [disabled]="productDetailForm.invalid">Submit Information</button>
+              <button type="submit" class="btn btn-info" [disabled]="productDetailForm.invalid">Submit
+                Information</button>
             </form>
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Form đăng ký -->
+    <div class="row" *ngIf="selectedForm === 'signupForm'">
       <div class="col-md-6 col-sm-6 col-xs-12">
         <div class="panel panel-danger">
-          <div class="panel-heading">
-            SINGUP FORM
-          </div>
+          <div class="panel-heading">SIGNUP FORM</div>
           <div class="panel-body">
             <form role="form">
-
               <div class="form-group">
                 <label>Enter Email</label>
                 <input class="form-control" type="text">
@@ -64,13 +76,11 @@
                 <p class="help-block">Help text here.</p>
               </div>
               <div class="form-group">
-                <label>Re Type Password </label>
+                <label>Re Type Password</label>
                 <input class="form-control" type="password">
                 <p class="help-block">Help text here.</p>
               </div>
-
-              <button type="submit" class="btn btn-danger">Register Now </button>
-
+              <button type="submit" class="btn btn-danger">Register Now</button>
             </form>
           </div>
         </div>
